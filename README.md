@@ -19,6 +19,17 @@
 
 Useful links, scripts, tools and best practice for Microsoft SQL Server Database
 
+## Local DBA Knowledge Base
+
+This fork also contains a curated SQL DBA troubleshooting layer for local incident workflows.
+
+- Start with `MyCollection/00-curated` for focused triage scripts and runbooks.
+- Use the other `MyCollection` topic folders as the broader local script library.
+- Use the original root folders as the upstream `sqlserver-kit` reference library.
+- Follow `AGENTS.md` when using Copilot as a SQL DBA assistant.
+
+First milestone workflow: capture the issue context, run the recommended curated read-only scripts, save sanitized results in `MyCollection/10-cases`, then analyze root cause and next steps.
+
 
 <a id="table-of-contents"></a>
 ## Table of Contents
