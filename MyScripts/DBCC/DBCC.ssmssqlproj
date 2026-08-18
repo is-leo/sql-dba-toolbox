@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DBCC">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-11T14:37:13.1177449+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="10_DBCC_Undocumented_PAGEIND_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>10_DBCC_Undocumented_PAGEIND_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="2_DBCC_SQLPERF_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>2_DBCC_SQLPERF_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="3_DBCC_SHOWSTATISTICS_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>3_DBCC_SHOWSTATISTICS_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="4_DBCC_DBCCtoDMO_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>4_DBCC_DBCCtoDMO_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="5_DBCC_Maintenance_FREE_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>5_DBCC_Maintenance_FREE_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="6_DBCC_Maintenance_Shrink_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>6_DBCC_Maintenance_Shrink_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="7_DBCC_Validation_Constraints_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>7_DBCC_Validation_Constraints_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="8_DBCC_Validation_Ident_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>8_DBCC_Validation_Ident_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="9_DBCC_Undocumented_LOGINFO_PS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>9_DBCC_Undocumented_LOGINFO_PS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DBCC_Basics.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>DBCC_Basics.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

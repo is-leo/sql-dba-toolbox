@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="BrentOzar">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-16T14:56:06.9950127+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Brent_Ozar_sps.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Brent_Ozar_sps.sql</FullPath>
+        </FileNode>
+        <FileNode Name="install_sp_blitz.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>install_sp_blitz.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Install-All-Scripts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Install-All-Scripts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="pageiolatch_lab1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>pageiolatch_lab1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sos_scheduler_yield_lab2.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>sos_scheduler_yield_lab2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sp_blitz.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sp_blitz.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

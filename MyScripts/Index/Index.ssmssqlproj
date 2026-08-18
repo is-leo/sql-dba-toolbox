@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Index">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="00 RestoreCredit.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>00 RestoreCredit.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_physical_io_missing_index.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>check_physical_io_missing_index.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Count tables and indexes sizes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Count tables and indexes sizes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DuplicateIndexExamples.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DuplicateIndexExamples.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Find queries using index.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Find queries using index.sql</FullPath>
+        </FileNode>
+        <FileNode Name="How much space rebuild can save.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>How much space rebuild can save.sql</FullPath>
+        </FileNode>
+        <FileNode Name="I02 NC Covering.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>I02 NC Covering.sql</FullPath>
+        </FileNode>
+        <FileNode Name="I03 Best Choices for Include.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>I03 Best Choices for Include.sql</FullPath>
+        </FileNode>
+        <FileNode Name="index.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>index.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Index_breakdown.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Index_breakdown.sql</FullPath>
+        </FileNode>
+        <FileNode Name="index_frag_ola.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>index_frag_ola.sql</FullPath>
+        </FileNode>
+        <FileNode Name="index_fragmentation.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>index_fragmentation.sql</FullPath>
+        </FileNode>
+        <FileNode Name="index_not_used_for_search.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>index_not_used_for_search.sql</FullPath>
+        </FileNode>
+        <FileNode Name="index_sqlmaestros.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>index_sqlmaestros.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Indexed Views Walkthrough.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Indexed Views Walkthrough.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Indexing for Joins using auto pilot.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Indexing for Joins using auto pilot.sql</FullPath>
+        </FileNode>
+        <FileNode Name="IS01 Indexing for Joins.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>IS01 Indexing for Joins.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UnknownVariablesVSUnknown.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UnknownVariablesVSUnknown.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Which_Indexes_are_not_Used.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Which_Indexes_are_not_Used.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

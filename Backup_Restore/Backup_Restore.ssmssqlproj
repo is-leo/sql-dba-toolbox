@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Backup_Restore">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-11T10:01:04.9038496+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="backup_history.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>backup_history.sql</FullPath>
+        </FileNode>
+        <FileNode Name="backup_restore_progress.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>backup_restore_progress.sql</FullPath>
+        </FileNode>
+        <FileNode Name="backups_for_previous_week.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>backups_for_previous_week.sql</FullPath>
+        </FileNode>
+        <FileNode Name="generate_backup_scripts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>generate_backup_scripts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Get_SQL_Server_Backup_Directory.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Get_SQL_Server_Backup_Directory.sql</FullPath>
+        </FileNode>
+        <FileNode Name="how_old_fullbackups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>how_old_fullbackups.sql</FullPath>
+        </FileNode>
+        <FileNode Name="last_backups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>last_backups.sql</FullPath>
+        </FileNode>
+        <FileNode Name="restore_backup.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>restore_backup.sql</FullPath>
+        </FileNode>
+        <FileNode Name="restore_db_AG.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>restore_db_AG.sql</FullPath>
+        </FileNode>
+        <FileNode Name="take_dbs_backups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>take_dbs_backups.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

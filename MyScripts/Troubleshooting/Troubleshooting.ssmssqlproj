@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Troubleshooting">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-23T11:34:28.8558076+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="active_open_transactions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>active_open_transactions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="blocking.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>blocking.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CPU utilization with diagram .sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CPU utilization with diagram .sql</FullPath>
+        </FileNode>
+        <FileNode Name="cpu_per_db.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>cpu_per_db.sql</FullPath>
+        </FileNode>
+        <FileNode Name="cpu_sapping_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>cpu_sapping_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="current_expensive_blocked_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>current_expensive_blocked_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Db reads vs writes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Db reads vs writes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="db_in_suspect_mode.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>db_in_suspect_mode.sql</FullPath>
+        </FileNode>
+        <FileNode Name="determine_cost_parallel_execution.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>determine_cost_parallel_execution.sql</FullPath>
+        </FileNode>
+        <FileNode Name="drive_level_latency.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>drive_level_latency.sql</FullPath>
+        </FileNode>
+        <FileNode Name="emergency_triage_lab6.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>emergency_triage_lab6.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Estimate when long running query completes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Estimate when long running query completes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="fix_corrupt_ldf_file.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>fix_corrupt_ldf_file.sql</FullPath>
+        </FileNode>
+        <FileNode Name="fix_pageiolatch.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>fix_pageiolatch.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Get CPU Usage Per Database.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Get CPU Usage Per Database.sql</FullPath>
+        </FileNode>
+        <FileNode Name="identify_missing_index.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>identify_missing_index.sql</FullPath>
+        </FileNode>
+        <FileNode Name="IO_latency.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>IO_latency.sql</FullPath>
+        </FileNode>
+        <FileNode Name="io_latency_by_file.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>io_latency_by_file.sql</FullPath>
+        </FileNode>
+        <FileNode Name="io_latency_per_file.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>io_latency_per_file.sql</FullPath>
+        </FileNode>
+        <FileNode Name="io_longer_15ms.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>io_longer_15ms.sql</FullPath>
+        </FileNode>
+        <FileNode Name="locking_blocking_lab4.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>locking_blocking_lab4.sql</FullPath>
+        </FileNode>
+        <FileNode Name="long_running_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>long_running_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="monitor_tempdbfile_qrowth.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>monitor_tempdbfile_qrowth.sql</FullPath>
+        </FileNode>
+        <FileNode Name="non_problematic_waits.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>non_problematic_waits.sql</FullPath>
+        </FileNode>
+        <FileNode Name="optimize_adhoc.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>optimize_adhoc.sql</FullPath>
+        </FileNode>
+        <FileNode Name="os_perfromance_counters.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>os_perfromance_counters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="performance.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>performance.sql</FullPath>
+        </FileNode>
+        <FileNode Name="poison_waits_lab5.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>poison_waits_lab5.sql</FullPath>
+        </FileNode>
+        <FileNode Name="quick_look_at_hw_load.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>quick_look_at_hw_load.sql</FullPath>
+        </FileNode>
+        <FileNode Name="read_error_log.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>read_error_log.sql</FullPath>
+        </FileNode>
+        <FileNode Name="repair_db_suspect_mode.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>repair_db_suspect_mode.sql</FullPath>
+        </FileNode>
+        <FileNode Name="scan_sql_errorlog.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>scan_sql_errorlog.sql</FullPath>
+        </FileNode>
+        <FileNode Name="scheduler_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>scheduler_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="top_10_consuming_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>top_10_consuming_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="top_10_cumulative_waits.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>top_10_cumulative_waits.sql</FullPath>
+        </FileNode>
+        <FileNode Name="top_queries_by_avg_physical_reads.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>top_queries_by_avg_physical_reads.sql</FullPath>
+        </FileNode>
+        <FileNode Name="track_long_running_queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>track_long_running_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="track_progress_of_create_index.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>track_progress_of_create_index.sql</FullPath>
+        </FileNode>
+        <FileNode Name="troubleshooting.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>troubleshooting.sql</FullPath>
+        </FileNode>
+        <FileNode Name="troubleshooting_guideline.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>troubleshooting_guideline.sql</FullPath>
+        </FileNode>
+        <FileNode Name="troubleshooting_onprem_azure.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>troubleshooting_onprem_azure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="users_n_their_sessions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>users_n_their_sessions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="virtual_log_files_VLF.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>virtual_log_files_VLF.sql</FullPath>
+        </FileNode>
+        <FileNode Name="wait_types_definition.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>wait_types_definition.sql</FullPath>
+        </FileNode>
+        <FileNode Name="waits.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>waits.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

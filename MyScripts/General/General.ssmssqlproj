@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="General">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-16T13:55:50.1773036+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="change_db_file_location.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>change_db_file_location.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_assembly.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_assembly.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_connections.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_connections.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_disk_space.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_disk_space.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_if_conn_encrypted.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_if_conn_encrypted.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_patch.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_patch.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check_recommended_MAXDOP.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>check_recommended_MAXDOP.sql</FullPath>
+        </FileNode>
+        <FileNode Name="columns_with_the_same_name.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>columns_with_the_same_name.sql</FullPath>
+        </FileNode>
+        <FileNode Name="connections_by_IPs.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>connections_by_IPs.sql</FullPath>
+        </FileNode>
+        <FileNode Name="connections_over_time.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>connections_over_time.sql</FullPath>
+        </FileNode>
+        <FileNode Name="connections_per_db.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>connections_per_db.sql</FullPath>
+        </FileNode>
+        <FileNode Name="create_function.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>create_function.sql</FullPath>
+        </FileNode>
+        <FileNode Name="create_snapshot_db.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>create_snapshot_db.sql</FullPath>
+        </FileNode>
+        <FileNode Name="create_sp.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>create_sp.sql</FullPath>
+        </FileNode>
+        <FileNode Name="cte_temp_var_tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>cte_temp_var_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="currently_running_queries.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>currently_running_queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="cursor_ex.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>cursor_ex.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DAC.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>DAC.sql</FullPath>
+        </FileNode>
+        <FileNode Name="date_manipulation.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>date_manipulation.sql</FullPath>
+        </FileNode>
+        <FileNode Name="db_files_info.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>db_files_info.sql</FullPath>
+        </FileNode>
+        <FileNode Name="db_size_with_graph.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>db_size_with_graph.sql</FullPath>
+        </FileNode>
+        <FileNode Name="dbs_info.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>dbs_info.sql</FullPath>
+        </FileNode>
+        <FileNode Name="default_traces.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>default_traces.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Disk_size.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Disk_size.sql</FullPath>
+        </FileNode>
+        <FileNode Name="drop_constraints_n_tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>drop_constraints_n_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="drop_multiple_objects_ex_tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>drop_multiple_objects_ex_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="errorlog_alert_notify.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>errorlog_alert_notify.sql</FullPath>
+        </FileNode>
+        <FileNode Name="extended_property.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>extended_property.sql</FullPath>
+        </FileNode>
+        <FileNode Name="full_memory_info.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>full_memory_info.sql</FullPath>
+        </FileNode>
+        <FileNode Name="get_all_databases_meta_data.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>get_all_databases_meta_data.sql</FullPath>
+        </FileNode>
+        <FileNode Name="get_db_sizes.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>get_db_sizes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="hardware_info.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>hardware_info.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Invoke_SqlAssessment.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Invoke_SqlAssessment.sql</FullPath>
+        </FileNode>
+        <FileNode Name="kill_multiple_sessions.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>kill_multiple_sessions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Kolla_när_tabeller_uppdaterats_sökts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Kolla_när_tabeller_uppdaterats_sökts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Last CheckDB.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Last CheckDB.sql</FullPath>
+        </FileNode>
+        <FileNode Name="last_stats_update.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>last_stats_update.sql</FullPath>
+        </FileNode>
+        <FileNode Name="make_int_skinnier.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>make_int_skinnier.sql</FullPath>
+        </FileNode>
+        <FileNode Name="partition_table_ex.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>partition_table_ex.sql</FullPath>
+        </FileNode>
+        <FileNode Name="query_store.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>query_store.sql</FullPath>
+        </FileNode>
+        <FileNode Name="security_cosiderations.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>security_cosiderations.sql</FullPath>
+        </FileNode>
+        <FileNode Name="show_biggest_tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>show_biggest_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="shrink_progress.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>shrink_progress.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sp_configure.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sp_configure.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sp_FindStringInTable.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sp_FindStringInTable.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sql_connections_by_IP.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sql_connections_by_IP.sql</FullPath>
+        </FileNode>
+        <FileNode Name="startup_parameters.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>startup_parameters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TDE.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>TDE.sql</FullPath>
+        </FileNode>
+        <FileNode Name="throw.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>throw.sql</FullPath>
+        </FileNode>
+        <FileNode Name="troubleshooting_checklist.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>troubleshooting_checklist.sql</FullPath>
+        </FileNode>
+        <FileNode Name="tsql_basics.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>tsql_basics.sql</FullPath>
+        </FileNode>
+        <FileNode Name="when_SQL Server_was_installed.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>when_SQL Server_was_installed.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Who_dropped_altered_database_object.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Who_dropped_altered_database_object.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Who_dropped_database.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Who_dropped_database.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

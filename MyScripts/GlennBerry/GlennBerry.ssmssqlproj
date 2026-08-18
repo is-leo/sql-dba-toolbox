@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="GlennBerry">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-GG4LGNS:AzureAD\LeoIsmatov">
+          <Created>2024-09-17T10:10:24.0985174+02:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-GG4LGNS</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>DBA_snapshot</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Database Level Configuration Queries.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-GG4LGNS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-GG4LGNS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Database Level Configuration Queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hardware and Storage Configuration Queries_2017.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hardware and Storage Configuration Queries_2017.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Instance Level Configuration Queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Instance Level Configuration Queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M3 - Diagnosing Activity-related Instance Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M3 - Diagnosing Activity-related Instance Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M3 - Diagnosing Storage-related Instance Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M3 - Diagnosing Storage-related Instance Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M4 - Diagnosing Memory-related Instance Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M4 - Diagnosing Memory-related Instance Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M4 -Diagnosing CPU-related Instance Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M4 -Diagnosing CPU-related Instance Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M6 - Diagnosing Activity-related Database Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M6 - Diagnosing Activity-related Database Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="M7 - Diagnosing Storage and Memory-related Database Issues.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>M7 - Diagnosing Storage and Memory-related Database Issues.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Operating System Configuration Queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Operating System Configuration Queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQL Server 2017 Diagnostic Information Queries.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SQL Server 2017 Diagnostic Information Queries.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

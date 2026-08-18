@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Datbase_Corruption">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="data_corruption_ex.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>data_corruption_ex.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-DBCC-CHECKOptions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-DBCC-CHECKOptions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-ExampleOutput.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-ExampleOutput.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-FatalErrors.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-FatalErrors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-FixingDataPurity.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-FixingDataPurity.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-FixingNCIndexes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-FixingNCIndexes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-IOErrors.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-IOErrors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-LastKnownGood.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-LastKnownGood.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-PageProtection.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-PageProtection.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-RestoreOptions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-RestoreOptions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-RestoreSequences.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-RestoreSequences.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-RunningRepair.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-RunningRepair.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Demo-TailLogBackups.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Demo-TailLogBackups.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-DBCC-CHECKOptions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-DBCC-CHECKOptions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-ExampleOutput.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-ExampleOutput.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-FatalErrors.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-FatalErrors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-FixingDataPurity.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-FixingDataPurity.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-FixingNCIndexes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-FixingNCIndexes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-IOErrors.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-IOErrors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Setup-RunningRepair.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Setup-RunningRepair.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

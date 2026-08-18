@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="OtherUsefulScripts">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="ROADRUNNER\SQL2022DEV01:ROADRUNNER\kimbe">
+          <Created>2023-11-15T20:22:57.0822057-08:00</Created>
+          <Type>SQL</Type>
+          <Server>ROADRUNNER\SQL2022DEV01</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="DuplicateIndexExamples.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>DuplicateIndexExamples.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Indexed Views Walkthrough.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Indexed Views Walkthrough.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Indexing for Joins using auto pilot.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Indexing for Joins using auto pilot.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UnknownVariablesVSUnknown.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UnknownVariablesVSUnknown.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

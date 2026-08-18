@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="IndexingStrategies">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="ROADRUNNER\SQL2022DEV01:ROADRUNNER\kimbe">
+          <Created>2023-11-15T19:32:41.9202941-08:00</Created>
+          <Type>SQL</Type>
+          <Server>ROADRUNNER\SQL2022DEV01</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="00 RestoreCredit.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>00 RestoreCredit.sql</FullPath>
+        </FileNode>
+        <FileNode Name="I02 NC Covering.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>I02 NC Covering.sql</FullPath>
+        </FileNode>
+        <FileNode Name="I03 Best Choices for Include.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>I03 Best Choices for Include.sql</FullPath>
+        </FileNode>
+        <FileNode Name="IS01 Indexing for Joins.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:ROADRUNNER\SQL2022DEV01:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>ROADRUNNER\SQL2022DEV01</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>IS01 Indexing for Joins.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
