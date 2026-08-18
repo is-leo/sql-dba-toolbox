@@ -1,0 +1,220 @@
+
+
+/*
+Schema enligt nedanstående:
+FULL Backup SYSDB  -  Every Day
+FULL Backup USERDB -  Every Day 23:00
+DIFF Backup USERDB -  no schedule
+LOG  Backup USERDB -  Every hour
+Integrity Check SYSDB - Every Day
+Integrity Check USERDB - Once a week
+Index Optimize - Once a Week
+Update Statistics - Every Day
+
+*/
+USE msdb
+GO
+
+-- Backup Full System Databases Schedule --
+DECLARE @DatabaseBackup_SystemFullScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - Database_Full_Backup - SYSTEM_DATABASES-Schedule'
+    , @enabled = 1
+    , @freq_type = 4
+    , @freq_interval = 1
+	, @freq_recurrence_factor = 1
+    , @active_start_time = 060000
+	, @schedule_id = @DatabaseBackup_SystemFullScheduleID OUTPUT
+EXEC sp_attach_schedule
+	@job_name = N'DBA - DatabaseBackup - SYSTEM_DATABASES - FULL'
+	, @schedule_id = @DatabaseBackup_SystemFullScheduleID
+GO
+
+
+-- Backup Full User Databases Schedule --
+DECLARE @DatabaseBackup_UserFullScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - Database_Full_Backup - USER_DATABASES-Schedule'
+    , @enabled = 1
+    , @freq_type = 4
+    , @freq_interval = 1
+	, @freq_recurrence_factor=1
+    , @active_start_time = 230000
+	, @schedule_id = @DatabaseBackup_UserFullScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - DatabaseBackup - USER_DATABASES - FULL'
+	, @schedule_id = @DatabaseBackup_UserFullScheduleID
+GO
+
+---- Backup Diff User Databases Schedule --
+--DECLARE @DatabaseBackup_UserDiffScheduleID AS int
+--EXEC sp_add_schedule
+--	@schedule_name =  N'DBA - DatabaseBackup-USER_DATABASES-DIFF-Schedule'
+--    , @enabled = 1
+--    , @freq_type = 8
+--    , @freq_interval = 125
+--	, @freq_recurrence_factor=1
+--    , @active_start_time = 020000
+--	, @schedule_id = @DatabaseBackup_UserDiffScheduleID OUTPUT
+--EXEC sp_attach_schedule 
+--	@job_name = N'DBA - DatabaseBackup - USER_DATABASES - DIFF'
+--	, @schedule_id = @DatabaseBackup_UserDiffScheduleID
+--
+--
+
+-- Backup Log User Databases Schedule --
+DECLARE @DatabaseBackup_UserLogScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - Database_Log_Backup - USER_DATABASES-Schedule'
+    , @enabled = 1
+    , @freq_type = 4
+    , @freq_interval = 1
+    , @freq_subday_type = 0x4
+    , @freq_subday_interval = 60
+    , @active_start_time = 000000
+    , @active_end_time = 235959
+	, @schedule_id = @DatabaseBackup_UserLogScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - DatabaseBackup - USER_DATABASES - LOG'
+	, @schedule_id = @DatabaseBackup_UserLogScheduleID
+GO
+
+
+-- Integrity Check System Databases Schedule --
+DECLARE @IntegrityCheck_SystemScheduleID AS int
+EXEC sp_add_schedule 
+	@schedule_name = N'DBA - DatabaseIntegrityCheck - SYSTEM_DATABASES-Schedule'
+	, @enabled = 1
+	, @freq_type = 4
+	, @freq_interval = 1
+	, @active_start_time = 050000
+	, @schedule_id = @IntegrityCheck_SystemScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - DatabaseIntegrityCheck - SYSTEM_DATABASES'
+	, @schedule_id = @IntegrityCheck_SystemScheduleID
+GO
+
+-- Integrity Check User Databases Schedule --
+DECLARE @IntegrityCheck_UserScheduleID AS int
+EXEC sp_add_schedule 
+	@schedule_name = N'DBA - DatabaseIntegrityCheck - USER_DATABASES-Schedule'
+	, @enabled = 1
+	, @freq_type = 8
+	, @freq_interval = 1
+	, @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+	, @active_start_time = 023000
+	, @schedule_id = @IntegrityCheck_UserScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - DatabaseIntegrityCheck - USER_DATABASES'
+	, @schedule_id = @IntegrityCheck_UserScheduleID
+GO
+
+-- Index Optimize Schedule --
+DECLARE @IndexOptimize_ScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - IndexOptimize - USER_DATABASES-Schedule'
+    , @enabled = 1
+	, @freq_type = 8
+	, @freq_interval = 64
+	, @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+	, @active_start_time = 23000
+	, @schedule_id = @IndexOptimize_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - IndexOptimize - USER_DATABASES'
+	, @schedule_id = @IndexOptimize_ScheduleID ;
+GO
+
+-- Update Statistics Schedule --
+DECLARE @IndexOptimize_ScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - Update Statistics - USER_DATABASES-Schedule'
+    , @enabled = 1
+    , @freq_type = 4
+    , @freq_interval = 1
+    , @active_start_time = 050000
+	, @schedule_id = @IndexOptimize_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - Update Statistics - USER_DATABASES'
+	, @schedule_id = @IndexOptimize_ScheduleID ;
+GO
+
+-- sp_delete_backuphistory --
+DECLARE @delete_backuphistory_ScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - sp_delete_backuphistory-Schedule'
+    , @enabled = 1
+    , @freq_type = 8
+    , @freq_interval = 1
+    , @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+    , @freq_subday_interval = 0
+    , @active_start_time = 35200
+    , @active_end_time = 235959
+	, @schedule_id = @delete_backuphistory_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - sp_delete_backuphistory'
+	, @schedule_id = @delete_backuphistory_ScheduleID
+GO
+
+-- Output File Cleanup Schedule --
+DECLARE @Output_File_Cleanup_ScheduleID AS int
+--DECLARE @StartDate INT
+--set @StartDate = convert(char(10),dateadd(mm, +1, getdate()),112)
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - Output_File_Cleanup-Schedule'
+    , @enabled = 1
+    , @freq_type = 8
+    , @freq_interval = 1
+    , @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+    , @freq_subday_interval = 0
+    , @active_start_time = 44500
+    , @active_end_time = 235959
+--	, @active_start_date= @StartDate
+	, @schedule_id = @Output_File_Cleanup_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - Output File Cleanup'
+	, @schedule_id = @Output_File_Cleanup_ScheduleID
+GO
+
+-- Remove Old Log Files Schedule --
+DECLARE @purge_jobhistory_ScheduleID AS int
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - purge_jobhistory-Schedule'
+    , @enabled = 1
+    , @freq_type = 8
+    , @freq_interval = 1
+    , @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+    , @freq_subday_interval = 0
+    , @active_start_time = 51500
+    , @active_end_time = 235959
+	, @schedule_id = @purge_jobhistory_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - sp_purge_jobhistory'
+	, @schedule_id = @purge_jobhistory_ScheduleID
+GO
+
+-- CommandLog Cleanup Schedule --
+DECLARE @CommandLog_Cleanup_ScheduleID AS int
+--DECLARE @StartDate INT
+--set @StartDate = convert(char(10),dateadd(mm, +1, getdate()),112)
+EXEC sp_add_schedule
+	@schedule_name =  N'DBA - CommandLog_Cleanup-Schedule'
+    , @enabled = 1
+    , @freq_type = 8
+    , @freq_interval = 1
+    , @freq_subday_type = 1
+	, @freq_recurrence_factor = 1
+    , @freq_subday_interval = 0
+    , @active_start_time = 44500
+    , @active_end_time = 235959
+--	, @active_start_date= @StartDate
+	, @schedule_id = @CommandLog_Cleanup_ScheduleID OUTPUT
+EXEC sp_attach_schedule 
+	@job_name = N'DBA - CommandLog Cleanup'
+	, @schedule_id = @CommandLog_Cleanup_ScheduleID
+GO
+

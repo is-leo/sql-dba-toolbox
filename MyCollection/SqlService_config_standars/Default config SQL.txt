@@ -1,0 +1,196 @@
+
+
+/*
+
+Lägg till Traceflagga 3226 och 4199 på alla instanser
+
+På SQL 2014 och äldre lägger vi också till 1117 & 1118 (så länge man inte vet att instansen ska innehålla stora databaser med många db-filer)
+
+Lägg också till tjänstekontot för SQL Server Service i "Perform Volume Maintenance".
+
+*/
+
+
+------------------------------------------------
+--- Change Recovery Model & AutoGrowth for Model
+------------------------------------------------
+USE [master]
+GO
+ALTER DATABASE [model] SET RECOVERY FULL WITH NO_WAIT
+GO
+ALTER DATABASE [model] MODIFY FILE ( NAME = N'modeldev', FILEGROWTH = 262144KB )
+GO
+ALTER DATABASE [model] MODIFY FILE ( NAME = N'modellog', FILEGROWTH = 131072KB )
+GO
+
+
+------------------------------------------------
+--- Change AutoGrowth for MSDB
+------------------------------------------------
+
+USE [master]
+GO
+ALTER DATABASE [msdb] MODIFY FILE ( NAME = N'MSDBData', FILEGROWTH = 524288KB )
+GO
+ALTER DATABASE [msdb] MODIFY FILE ( NAME = N'MSDBLog', FILEGROWTH = 262144KB )
+GO
+
+
+
+
+USE master;
+GO
+EXEC sp_configure 'show advanced options', '1';
+RECONFIGURE WITH OVERRIDE;
+
+
+
+-----------------------------------------
+--- Enable Optimize for Ad hoc workloads
+-----------------------------------------
+
+EXEC sys.sp_configure N'optimize for ad hoc workloads', N'1'
+GO
+RECONFIGURE WITH OVERRIDE
+
+--------------------------------------------
+--- Set Cost threshold for Parallelism to 100
+--------------------------------------------
+
+EXEC sys.sp_configure N'cost threshold for parallelism', N'100'
+GO
+RECONFIGURE WITH OVERRIDE
+
+-----------------------------------------
+--- Set Backup compression as default
+-----------------------------------------
+
+USE master;
+GO
+EXEC sp_configure 'backup compression', '1';
+RECONFIGURE WITH OVERRIDE;
+
+
+-----------------------------------------
+--- Enable Remote Admin Connection
+-----------------------------------------
+
+USE master;
+GO
+EXEC sp_configure 'remote admin connections', '1';
+RECONFIGURE WITH OVERRIDE;
+
+
+RECONFIGURE;
+
+USE master;
+GO
+EXEC sp_configure 'show advanced options', '0';
+RECONFIGURE WITH OVERRIDE;
+  
+
+
+
+
+
+-----------------------------------------
+--- configure size of SQL Agent History log
+-----------------------------------------
+
+
+USE [msdb]
+GO
+EXEC msdb.dbo.sp_set_sqlagent_properties @jobhistory_max_rows=10000, 
+		@jobhistory_max_rows_per_job=1000
+GO
+
+---------------------------------
+--- Configure number of Errorlogs
+---------------------------------
+
+USE [master]
+GO
+EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'NumErrorLogs', REG_DWORD, 30
+GO
+
+
+
+
+
+-----------------------------------------
+--- Create DBA - SP_Cycle_errorlog JOB
+-----------------------------------------
+
+
+
+USE [msdb]
+GO
+
+/****** Object:  Job [DBA - sp_Cycle_Errorlog]    Script Date: 2016-04-20 14:35:33 ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 2016-04-20 14:35:33 ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+BEGIN
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
+END
+
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'DBA - sp_Cycle_Errorlog', 
+		@enabled=1, 
+		@notify_level_eventlog=0, 
+		@notify_level_email=0, 
+		@notify_level_netsend=0, 
+		@notify_level_page=0, 
+		@delete_level=0, 
+		@description=N'Cycle Error Log every week
+		- This Job belongs to DBA. Please contact IT operations if you have any questions.', 
+		@category_name=N'[Uncategorized (Local)]', 
+		@owner_login_name=N'sa', @job_id = @jobId OUTPUT
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [SP_cycle_errorlog]    Script Date: 2016-04-20 14:35:33 ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'SP_cycle_errorlog', 
+		@step_id=1, 
+		@cmdexec_success_code=0, 
+		@on_success_action=1, 
+		@on_success_step_id=0, 
+		@on_fail_action=2, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'sp_cycle_errorlog', 
+		@database_name=N'master', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'Cycle_errorlog_weekly', 
+		@enabled=1, 
+		@freq_type=8, 
+		@freq_interval=2, 
+		@freq_subday_type=1, 
+		@freq_subday_interval=0, 
+		@freq_relative_interval=0, 
+		@freq_recurrence_factor=1, 
+		@active_start_date=20160420, 
+		@active_end_date=99991231, 
+		@active_start_time=10, 
+		@active_end_time=235959, 
+		@schedule_uid=N'4f77342f-33b8-4de3-bf55-12725e8d8c54'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+EndSave:
+
+GO
+
+
+

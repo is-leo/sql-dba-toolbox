@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "OtherUsefulScripts", "OtherUsefulScripts\OtherUsefulScripts.ssmssqlproj", "{1DD51832-CC6D-45E2-BBEC-00AB89697688}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "IndexingStrategies", "IndexingStrategies\IndexingStrategies.ssmssqlproj", "{A5CF92F0-20D3-402D-88B7-6EABB4DB83BA}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SQLskillsIndexProcs", "SQLskillsIndexProcs\SQLskillsIndexProcs.ssmssqlproj", "{CEDD21B6-0FE7-4BA5-9FF0-2C64C311BB3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DD51832-CC6D-45E2-BBEC-00AB89697688}.Default|Default.ActiveCfg = Default
+		{A5CF92F0-20D3-402D-88B7-6EABB4DB83BA}.Default|Default.ActiveCfg = Default
+		{CEDD21B6-0FE7-4BA5-9FF0-2C64C311BB3C}.Default|Default.ActiveCfg = Default
+		{045A9A1E-2FB2-49F0-9FAD-1F25540BD575}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43040FFE-47E9-44E2-862D-959474D46348}
+	EndGlobalSection
+EndGlobal
