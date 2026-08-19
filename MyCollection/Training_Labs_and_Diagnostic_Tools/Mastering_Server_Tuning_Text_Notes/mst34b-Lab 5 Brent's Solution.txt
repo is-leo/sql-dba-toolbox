@@ -1,0 +1,42 @@
+USE [master]
+GO
+
+GO
+ALTER DATABASE [StackOverflow] SET ALLOW_SNAPSHOT_ISOLATION ON
+GO
+USE StackOverflow;
+GO
+CREATE OR ALTER   PROC [dbo].[usp_AuditReport] 
+	@TableName NVARCHAR(128) = NULL, @FieldName NVARCHAR(128) = NULL, 
+	@StartDate DATE, @EndDate DATE, @PageNumber INT = 1, @PageSize INT = 100 AS
+BEGIN
+DECLARE @StringToExec NVARCHAR(4000) = N' /* usp_AuditReport */ 
+	SET TRANSACTION ISOLATION LEVEL SNAPSHOT;
+	SELECT *
+	  FROM dbo.Audit
+	  WHERE 1 = 1 ';
+IF @TableName IS NOT NULL
+	SET @StringToExec = @StringToExec + N' AND TableName = @TableName ';
+
+IF @FieldName IS NOT NULL
+	SET @StringToExec = @StringToExec + N' AND FieldName = @FieldName ';
+
+IF @StartDate IS NOT NULL
+	SET @StringToExec = @StringToExec + N' AND UpdateDate >= @StartDate ';
+
+IF @EndDate IS NOT NULL
+	SET @StringToExec = @StringToExec + N' AND UpdateDate <= @EndDate ';
+
+SET @StringToExec = @StringToExec + N'ORDER BY UpdateDate, FieldName
+  OFFSET ((@PageNumber - 1) * @PageSize) ROWS
+  FETCH NEXT @PageSize ROWS ONLY;';
+
+EXEC sp_executesql @StringToExec,
+	N'@TableName NVARCHAR(128), @FieldName NVARCHAR(128), @StartDate DATE, @EndDate DATE, @PageNumber INT, @PageSize INT',
+	@TableName, @FieldName, @StartDate, @EndDate, @PageNumber, @PageSize;
+
+END
+GO
+CREATE CLUSTERED INDEX UpdateDate_FieldName ON dbo.Audit(UpdateDate, FieldName)
+WITH (ONLINE = OFF, MAXDOP = 0);
+GO

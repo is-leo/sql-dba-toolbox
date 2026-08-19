@@ -1,0 +1,12 @@
+Plan Caching and Parameterization
+Building execution plans is hard: picking the right indexes, seeks vs sorts, row estimations, memory grant requirements, it’s all a lot of work. SQL Server tries to cache execution plans for reuse later, which should result in lower CPU, more memory, and easier troubleshooting.
+
+Unfortunately, sometimes it goes wrong. Let’s talk about how it goes wrong, how to tell if you’re having the problem, and how you can use Forced Parameterization to mitigate the problem.
+
+The troubleshooting links mentioned in the video:
+
+How much plan cache history do I have?
+https://www.brentozar.com/archive/2018/07/tsql2sday-how-much-plan-cache-history-do-you-have/
+
+Why multiple plans for one query are bad
+https://www.brentozar.com/archive/2018/03/why-multiple-plans-for-one-query-are-bad/

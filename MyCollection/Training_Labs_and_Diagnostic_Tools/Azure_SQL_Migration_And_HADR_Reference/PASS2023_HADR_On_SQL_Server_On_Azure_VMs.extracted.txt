@@ -1,0 +1,388 @@
+﻿# Extracted text from PASS2023_HADR_On_SQL_Server_On_Azure_VMs.pptx
+
+## ppt/slides/slide1.xml
+HADR on SQL Server on Azure VMs: Everything you Need to Know
+Taryn Pratt (she/her), Senior Program Manager
+Azure Data
+Pam
+Lahoud
+(she/her), Principal PM Manager
+Microsoft
+
+## ppt/slides/slide10.xml
+HA/DR Options in SQL Server
+
+## ppt/slides/slide11.xml
+Many HA/DR options in SQL Server
+Backup and Restore
+Log Shipping
+Database Mirroring
+Being removed in the future, use a Basic Availability Group instead
+Failover Cluster Instance
+Always On Availability Group
+Distributed Availability Group
+
+## ppt/slides/slide12.xml
+Backup and Restore
+Disaster Recovery solution, not really viable for High Availability
+Databases backed up to Blob storage in a different datacenter for DR
+Backup Options:
+Manually take backups
+Automated Backups via the SQL IaaS Extension on Azure VM
+Azure Backup for Enterprise software experience
+
+## ppt/slides/slide13.xml
+Log Shipping
+Backup transaction logs on primary
+Jobs are used to copy and restore to secondary SQL Server
+Good for disaster recovery
+Can be used for High Availability, but the secondary would be unavailable during restores
+Manual failover
+Straightforward to implement
+
+## ppt/slides/slide14.xml
+Failover Cluster Instance
+Instance is protected not just database
+Jobs, linked servers, etc.
+Requires shared storage for all nodes
+A single point of failure unless replicated
+No readable secondary
+Only one copy of the data
+Need to use log shipping, replication, or some other method to read the data not from the primary
+Failover == everything moves nodes
+Don't need Enterprise Edition
+
+## ppt/slides/slide15.xml
+Failover Cluster Instance – Storage Options
+Azure Shared Disks
+A feature of Azure Managed Disks
+Use either Premium SSD or Ultra Disks
+Supports all versions of SQL Server
+Premium File Shares
+A feature of Azure files
+SSD backed and have consistently low latency
+Supports SQL Server 2012 and later
+Storage Spaces Direct (S2D)
+A software based virtual SAN
+Can only be used in an availability set
+Supports SQL Server 2016 and later
+Limitations with each option should be reviewed when setting up an FCI
+
+## ppt/slides/slide16.xml
+Always On Availability Group
+Available in Standard and Enterprise editions
+Standard Edition has fewer features including only one database per AG, two replicas per AG, and no read-access to the secondary
+AGs are done at the database level not instance level
+Except in SQL Server 2022 where Contained AGs can copy logins to replicas
+Up to nine replicas including readable secondaries with Enterprise Edition
+Manual or Automatic Failover
+Listener can be used to connect to the database without knowing the instance
+
+## ppt/slides/slide17.xml
+Always On Availability Group – Listener Options
+Multi-subnet configuration matches on-premises
+Uses multiple subnets in the same virtual network
+Single subnet configuration
+Virtual Network Name (VNN) listener and a load balancer
+More complexity and increased maintenance
+Increased failover time due to load balancer
+Distributed Network Name (DNN) listener
+Must use a unique port
+Some restrictions on what versions of SQL Server are supported
+
+## ppt/slides/slide18.xml
+Redundancy options for Azure VMs
+Availability Sets (99.95% HA)
+Availability Zones (99.99% HA)
+Separate Fault Domain and Update Domains
+Separate Availability Zones
+Azure Datacenter
+
+## ppt/slides/slide19.xml
+High Availability for SQL Server on Azure VM
+
+## ppt/slides/slide2.xml
+Pam
+Principal PM Manager
+@SQLGoddess
+Microsoft, Azure Data
+I’m the PM lead for the SQL Server on Azure Virtual Machines team.
+​
+I’ve been working with SQL Server for
+over 25
+years,
+18
+of those at Microsoft!
+​
+Lahoud
+SQLGoddess@microsoft.com
+​
+https://aka.ms/sqlserverteam
+
+## ppt/slides/slide20.xml
+Making Tough Decisions
+
+## ppt/slides/slide21.xml
+How do you choose?
+
+## ppt/slides/slide22.xml
+SQL Server HA/DR technologies for Azure VM
+It's no different than on-premises
+Always On Availability Group
+Always On Failover Cluster Instance
+Log Shipping
+Backup and Restore
+Lower RPO
+Higher RPO
+Lower RTO
+Higher RTO
+Ideal for HA/DR
+Ideal for DR
+
+## ppt/slides/slide23.xml
+HA/DR Scenarios
+
+## ppt/slides/slide24.xml
+Scenario Overview
+Contoso Corporation is a multinational business with its headquarters in Boston and operations across the globe. They are creating a division to build new products and need SQL Servers to support the backend. They are in the planning stages and have outlined requirements for the initial launch. Your job is to propose the HA/DR solution for each of them.
+
+## ppt/slides/slide25.xml
+Scenario 1
+Contoso Corp. wants a development/test environment that will be periodically refreshed with new data for accurate testing.
+Key Requirements:
+Not customer facing (internal only)
+Can be down for 1-2 days, if needed, due to disaster
+Node resiliency not needed
+Refreshed weekly
+Only used Monday – Friday (9am – 5pm)
+What do you propose?
+Backup and Restore
+But if refresh rate is more frequent, then possibly log shipping
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+
+## ppt/slides/slide26.xml
+Scenario 1 – Best Practices in Azure
+Things to Consider:
+A storage account is needed
+Performance implications of backup
+Timings and size of the backup
+Size of the VM selected – network throughput (bandwidth) and IO throughput
+Where backups are placed – local storage, Blob storage
+Enable backup compression
+
+## ppt/slides/slide27.xml
+Scenario 2
+Contoso Corp wants reporting on a few key databases for internal teams who shouldn't have access to production SQL Servers.
+Key Requirements:
+Internal team use
+Access to < 10 databases is needed
+Can be down for up to 2 hours, if needed, due to disaster
+Does not need to be real-time data, delays of up to 30 minutes is acceptable for these reports
+What do you propose?
+Log Shipping
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+
+## ppt/slides/slide28.xml
+Scenario 2 – Best Practices in Azure
+Things to Consider:
+A storage account is needed
+Performance implications of backup
+Timings and size of the backup
+Size of the VM selected – network throughput (bandwidth)
+Where backups are placed – local storage, Blob storage
+
+## ppt/slides/slide29.xml
+Scenario 3
+Contoso Corp. has pivoted and added a new requirement to one of the projects. They are creating a multi-tenant application and each customer will have its own database for security reasons.
+Key Requirements:
+Application with high throughput (heavy transactions)
+High transaction log generation rate
+More than 100 databases that have to failover together
+No region redundancy is required
+What do you propose?
+Failover Cluster Instance
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+
+## ppt/slides/slide3.xml
+Taryn
+Sr Program Manager
+@tarynpivots
+taryn.pratt@microsoft.com
+Microsoft, Azure Data
+I’m the PM for HA/DR and Business Continuity for the SQL Server on Azure Virtual Machines team.
+I’ve been working with SQL Server for 16 years, 2 of those at Microsoft!
+Pratt
+https://aka.ms/sqlserverteam
+
+## ppt/slides/slide30.xml
+Scenario 3 – Best Practices in Azure
+Things to Consider:
+Follow our
+best practices for your HADR configuration
+Update heartbeat and threshold settings for the cluster
+Relax monitoring if the heartbeat and threshold settings changes are not sufficient
+Monitor resources limits on your VMs
+This requires shared storage – make sure to evaluate options in Azure
+
+## ppt/slides/slide31.xml
+Scenario 4
+Contoso Corp wants to offload the read-heavy processes to another server. They expect that this will be needed across 75 databases. Additionally, they want the data to be as real-time as possible.
+Key Requirements:
+< 100 databases
+Readable secondary with near real-time data
+~5 minutes of downtime allowed on main SQL Server
+Regional replica for DR may be required in the future
+What do you propose?
+Always On Availability Group with automatic failover
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+
+## ppt/slides/slide32.xml
+Scenario 4 – Best Practices In Azure
+Things to Consider:
+Follow our
+best practices for your HADR configuration
+Use multi-subnet to remove need for load balancer
+Consider a region with a paired region for DR
+Update heartbeat and threshold settings for the cluster
+Relax monitoring if the heartbeat and threshold settings changes are not sufficient
+Monitor resources limits on your VMs
+
+## ppt/slides/slide33.xml
+Deploy with Ease
+
+## ppt/slides/slide34.xml
+AG Deployment Made Easy
+Reduce the complexity of deploying new SQL Servers in an Availability Group
+End-to-end experience to create up to nine SQL Servers on Azure VM in an AG
+Set up with all the best practices we recommend for running an AG in Azure
+Multi-subnet AG means no need for a load balancer == reduced complexity
+
+## ppt/slides/slide35.xml
+Demo
+End-to-end Availability Group Deployment Experience
+
+## ppt/slides/slide37.xml
+Taryn Pratt
+Pam
+Lahoud
+@tarynpivots
+@SQLGoddess
+
+## ppt/slides/slide38.xml
+Microsoft SQL at PASS Data Community Summit
+{2D5ABB26-0587-4C30-8999-92F81FD0307C}Thursday
+Breakfast with the Microsoft Data Leadership Team
+Hosted by Bob Ward
+6:45AM
+SQL Server on Azure VM – Configuring for Price-Performance
+Pam Lahoud
+10:15AM
+Friday
+Wednesday
+Containerize with Ease with Cross-Platform SQL Server AGs
+Amit Khandelwal
+10:15AM
+Demo Party: Azure SQL Managed Instance in action
+Mladen Andzic and Vladimir Ivanovic
+10:15AM at
+Ecostage
+From Startups to the Enterprise: Beyond RDBMS with Azure SQL
+Bob Ward, Sanjay Mishra, Muazma Zahid and Davide Mauri
+10:15AM
+So you want to be an MVP?
+Rie Merritt, Birds of a Feather – Lunch
+Keynote: Shireesh Thota, Microsoft CVP Azure Data
+Developing with Databases: what are the pain points?
+Davide Mauri
+Birds of a Feather - Lunch
+What you should know about Always On availability groups
+Bob Ward
+1:30PM
+Hidden Gems in SQL Server 2022
+Bob Ward and Ajay Jagannathan
+10:15AM
+SQL Database and Fabric – Better Together!
+Muazma Zahid, Idris Motiwala and Jes Schultz
+1:15PM at
+Ecostage
+Data Encryption & Integrity: Innovations in Azure SQL
+Pieter Vanhove
+1:30PM
+What’s new in Azure SQL and SQL Server, Data Exposed Live
+Anna Hoffman and SQL Product Group friends
+10:15AM
+Seamless Discover, assess and modernize to Azure SQL
+Sudhir Raparla and Ravinder Singh
+1:30PM
+Everything you need to know about Data Virtualization in SQL
+Hugo Queiroz
+3:15PM
+It’s under control, but is it under source control?
+Drew Skwiers-Koballa
+11:00AM at
+Ecostage
+From ground to cloud with SQL Server 2022
+Ajay Jagannathan and Perry Skountrianos
+3:15PM
+Unleashing the power of access control of the SQL engine
+Andreas Wolter
+3:15PM
+Query Store
+Erin Stellato
+Birds of a Feather - Lunch
+Exploring what's new in Azure SQL Managed Instance
+Borko Novakovic and Vladimir Ivanovic
+3:15PM
+Accelerate your Oracle Modernization journey to Azure SQL
+Neel Ball, Kuldeep Chauhan, Harmeet Singh
+3:15PM
+Optimize price-performance using Azure SQL DB Hyperscale
+Arvind Shyamsundar and Aditya Badramraju
+1:30PM
+Making the SQL Query Processor Work for You
+Kate Smith and Derek Wilson
+4:45PM
+Modernize apps with Azure SQL MI and unlock cloud benefits
+Borko Novakovic and Mladen Andzic
+4:45PM
+Manage, secure & govern SQL estate with Azure Arc
+Raj Pochiraju and Dinakar Nethi
+4:45PM
+More for less: Cost optimizing your Azure SQL Database
+Abdul Sathar Sait and Nils Pohlmann
+4:45PM
+Improve Your Hybrid SQL Server Observability with Azure Arc
+Dhananjay Mahajan and Lance Wright
+4:45PM
+What's new in SQL Tools and Experiences
+Erin Stellato, Drew Skwiers-Koballa, Anna Hoffman
+4:45PM
+HADR on SQL Server on Azure VMs: Everything you need to know
+Pam Lahoud, Taryn Pratt
+4:45PM
+Fill out our survey for a chance to win a mentoring session with the Partner Director of SQL,
+Sanjay Mishra
+aka.ms/
+sqlsurvey
+
+## ppt/slides/slide4.xml
+Agenda
+Many HA/DR options
+How do you choose?
+High Availability made easy -
+New end-to-end Availability Group deployment experience
+
+## ppt/slides/slide5.xml
+What is HA/DR?
+
+## ppt/slides/slide6.xml
+Important Definitions
+
+## ppt/slides/slide7.xml
+HA/DR Requirements
+
+## ppt/slides/slide8.xml
+HA/DR Requirements
+
+## ppt/slides/slide9.xml
+Discussing High Availability Disaster Recovery

@@ -1,0 +1,923 @@
+﻿
+Basics:
+To add DBA commands new query session: 
+C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\SqlWorkbenchProjectItems\Sql
+
+SQL features:
+Max # dbs can be run  > 32 000 
+Max db zise = 524 pb 
+Max instances = 50  
+Max HA nodes up to 8 
+MAX Memory OS = 24 tb 
+Data stored in pages size of  8kb 
+MAX Columns in the table  32 000
+Max data file size = 16 tb
+Max log file size = 2
+
+SSMS
+ctrl + shift + v                      /select from clipboard
+ctrl + shift - u                      /uppercase
+ctrl + shift - l                       /lowercase
+ctrl + alt + t                         /template explorer
+ctrl + alt + x                        /open toolbox
+F4                                         /properties windows
+F5                                         /execute script
+ctrl + L                                  /show estimated execution plan
+ctrl + M                                /show actual execution plan
+ctrl + alt + p                        /trace query in profiler
+Ctr + T                                 /result to text
+Shift + alt + s                     /show client statistics
+Ctrl + shift + q                  /query builder
+Ctrl + f5                        /parse a query before running (useful when you want to check the syntax before actual execution)
+Ctrl + 1                           /check current connections
+
+DB Engine Tuning Advisor  /we can analyze the performance of the customers query
+Policies & Facets to be discovered
+
+select * from sys.dm_exec_requests
+sp_helpdb 'TestDB'
+sp_help 'dbo.table'
+sp_helpfile
+sp_helpuser
+select * from sys.dm_db_log_space_usage
+select * from sys.databases
+select * from db__name.information_schema.tables
+select * from sys.dm_os_sys_info
+select * from sys.dm_server_services
+
+
+exec sp_msforeachdb -- find sp
+'if exists(select 1 from [?].sys.objects where name=''sp_avg'')
+select ''?'' as FoundInDatabase from [?].sys.objects where name=''sp_avg'''
+
+select * from sys.dm_user_db_resource_governance -- Available only in Azure
+--create a snapshot db
+CREATE DATABASE sub_snapshot_db ON
+(NAME = rep /*logical file name of sub*/, FILENAME = 'G:\Data\sub_snapshot_db.mdf')
+AS SNAPSHOT OF sub
+secpol.msc
+lusrmgr.msc
+msinfo32.exe
+
+--take backups
+DECLARE @name VARCHAR(50) -- database name  
+DECLARE @path VARCHAR(256) -- path for backup files  
+DECLARE @fileName VARCHAR(256) -- filename for backup  
+DECLARE @fileDate VARCHAR(20) -- used for file name
+ 
+-- specify database backup directory
+SET @path = 'D:\backup_test\'  
+ 
+-- specify filename format
+SELECT @fileDate = CONVERT(VARCHAR(20),GETDATE(),112)
+-- to include time select
+-- specify filename format
+-- SELECT @fileDate = CONVERT(VARCHAR(20),GETDATE(),112) + '_' + REPLACE(CONVERT(VARCHAR(20),GETDATE(),108),':','')
+ 
+DECLARE db_cursor CURSOR READ_ONLY FOR  
+SELECT name 
+FROM master.sys.databases 
+WHERE name NOT IN ('master','model','msdb','tempdb')  -- exclude these databases
+AND state = 0 -- database is online
+AND is_in_standby = 0 -- database is not read only for log shipping
+ 
+OPEN db_cursor   
+FETCH NEXT FROM db_cursor INTO @name   
+ 
+WHILE @@FETCH_STATUS = 0   
+BEGIN   
+   SET @fileName = @path + @name + '_' + @fileDate + '.BAK'  
+   BACKUP DATABASE @name TO DISK = @fileName WITH NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD, COMPRESSION,  STATS = 10  
+ 
+   FETCH NEXT FROM db_cursor INTO @name   
+END   
+
+ 
+CLOSE db_cursor   
+DEALLOCATE db_cursor
+
+--generate backup scripts
+SELECT 'BACKUP DATABASE ['  + name  + '] TO  DISK = N''F:\backups_before_upgrade_2\'  + name  + 
+'.bak'' WITH NOFORMAT, NOINIT,  NAME = N'''  + name  + '-Full Database Backup'', SKIP, NOREWIND, NOUNLOAD, COMPRESSION,  STATS = 10' + CHAR(13) 
+from sys.databases
+
+Truncate tables-- http://sqlhints.com/2014/09/28/truncate-allall-except-fewspecified-tables-of-a-database-in-sql-server/
+
+--Schedule Ola’s jobs
+ 
+-- This script creates the five jobs below.
+-- CommandLogCleanUp - 20:00
+-- DatabaseIntegrityCheckSys - 21:00
+-- DatabaseIntegrityCheckUser - 22:00
+-- IndexOptimizeUser - 23:00
+-- OutputFileCleanup - 00:00
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named CommandLogCleanUp.   
+-- Jobs that use this schedule execute every day when the time on the server is 01:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'CommandLogCleanUp' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 200000 ;  
+GO  
+-- attaches the schedule to the job  
+EXEC sp_attach_schedule  
+   @job_name = N'CommandLog CleanUp',  
+   @schedule_name = N'CommandLogCleanUp' ;  
+GO  
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named DatabaseIntegrityCheckSys.   
+-- Jobs that use this schedule execute every day when the time on the server is 21:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'DatabaseIntegrityCheckSys' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 210000 ;  
+GO  
+-- attaches the schedule to the job 
+EXEC sp_attach_schedule  
+   @job_name = N'DatabaseIntegrityCheck - SYSTEM_DATABASES',  
+   @schedule_name = N'DatabaseIntegrityCheckSys' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named DatabaseIntegrityCheckUser.   
+-- Jobs that use this schedule execute every day when the time on the server is 22:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'DatabaseIntegrityCheckUser' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 220000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'DatabaseIntegrityCheck - USER_DATABASES',  
+   @schedule_name = N'DatabaseIntegrityCheckUser' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named IndexOptimizeUser.
+-- Jobs that use this schedule execute every day when the time on the server is 23:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'IndexOptimizeUser' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 230000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'IndexOptimize - USER_DATABASES',  
+   @schedule_name = N'IndexOptimizeUser' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named OutputFileCleanup.
+-- Jobs that use this schedule execute every day when the time on the server is 00:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'OutputFileCleanup' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 000000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'Output File Cleanup',  
+   @schedule_name = N'OutputFileCleanup' ;  
+GO 
+
+ 
+-- This script creates the five jobs below.
+-- CommandLogCleanUp - 20:00
+-- DatabaseIntegrityCheckSys - 21:00
+-- DatabaseIntegrityCheckUser - 22:00
+-- IndexOptimizeUser - 23:00
+-- OutputFileCleanup - 00:00
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named CommandLogCleanUp.   
+-- Jobs that use this schedule execute every day when the time on the server is 01:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'CommandLogCleanUp' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 200000 ;  
+GO  
+-- attaches the schedule to the job  
+EXEC sp_attach_schedule  
+   @job_name = N'CommandLog CleanUp',  
+   @schedule_name = N'CommandLogCleanUp' ;  
+GO  
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named DatabaseIntegrityCheckSys.   
+-- Jobs that use this schedule execute every day when the time on the server is 21:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'DatabaseIntegrityCheckSys' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 210000 ;  
+GO  
+-- attaches the schedule to the job 
+EXEC sp_attach_schedule  
+   @job_name = N'DatabaseIntegrityCheck - SYSTEM_DATABASES',  
+   @schedule_name = N'DatabaseIntegrityCheckSys' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named DatabaseIntegrityCheckUser.   
+-- Jobs that use this schedule execute every day when the time on the server is 22:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'DatabaseIntegrityCheckUser' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 220000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'DatabaseIntegrityCheck - USER_DATABASES',  
+   @schedule_name = N'DatabaseIntegrityCheckUser' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named IndexOptimizeUser.
+-- Jobs that use this schedule execute every day when the time on the server is 23:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'IndexOptimizeUser' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 230000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'IndexOptimize - USER_DATABASES',  
+   @schedule_name = N'IndexOptimizeUser' ;  
+GO 
+ 
+USE msdb ;  
+GO  
+-- creates a schedule named OutputFileCleanup.
+-- Jobs that use this schedule execute every day when the time on the server is 00:00.   
+EXEC sp_add_schedule  
+    @schedule_name = N'OutputFileCleanup' ,  
+    @freq_type = 4,  
+    @freq_interval = 1,  
+    @active_start_time = 000000 ;  
+GO  
+-- attaches the schedule to the job   
+EXEC sp_attach_schedule  
+   @job_name = N'Output File Cleanup',  
+   @schedule_name = N'OutputFileCleanup' ;  
+GO 
+
+
+--- change db file location 
+USE master 
+GO  
+ALTER DATABASE [db_name] 
+MODIFY FILE (name='db_name',filename='E:\Data\db_name.mdf'); -- set new location 
+ALTER DATABASE db_name SET OFFLINE WITH ROLLBACK IMMEDIATE; 
+--Physically move the mdf file  
+ALTER DATABASE db_name SET ONLINE;
+User Management:
+
+select * from sys.server_principals
+--The following query returns the members of the database roles. 
+SELECT DP1.name AS DatabaseRoleName,    
+isnull (DP2.name, 'No members') AS DatabaseUserName    
+FROM sys.database_role_members AS DRM   
+RIGHT OUTER JOIN sys.database_principals AS DP1   
+   ON DRM.role_principal_id = DP1.principal_id   
+LEFT OUTER JOIN sys.database_principals AS DP2   
+   ON DRM.member_principal_id = DP2.principal_id   
+WHERE DP1.type = 'R' 
+ORDER BY DP1.name;
+https://docs.microsoft.com/en-us/troubleshoot/sql/security/transfer-logins-passwords-between-instances 
+
+exec sp_change_users_login 'report' -- find orphaned users
+exec sp_change_users_login 'auto_fix', 'user_name' -- map
+
+
+
+Troubleshooting:
+Create a txt doc , change extension to udl for performing a UDL test to check connectivity from a Windows server to a SQL server instance and database.
+exec sp_readerrorlog 0,1, 'test1', 'error'
+EXEC xp_ReadErrorLog 0, 1, N'Server is listening on', N'any', NULL, NULL, 'DESC'
+--blocks
+select * from sys.sysprocesses where blocked <> 0
+order by waittime desc
+
+-- spids
+select * from sys.dm_exec_connections
+where session_id = 215
+
+-- eventinfo
+dbcc inputbuffer(215)
+First Aid - Free Scripts, Downloads, Videos (brentozar.com)  - start with sp_Blitz @help =1
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+…………………query……………….
+SET STATISTICS IO OFF;
+SET STATISTICS TIME OFF;
+select * from sys.dm_exec_cached_plans
+-- change db file location 
+USE master 
+GO  
+ALTER DATABASE [db_name] 
+MODIFY FILE (name='db_name' 
+             ,filename='E:\Data\db_name.mdf'); -- set new location 
+ALTER DATABASE db_name SET OFFLINE WITH ROLLBACK IMMEDIATE; 
+--Physically move the mdf file to - E:\Data\db_name.mdf
+ALTER DATABASE db_name SET ONLINE;
+
+-- change db file location 
+SELECT client_net_address FROM sys.dm_exec_connections WHERE session_id=@@SPID;
+
+
+--active requests
+SELECT * FROM sys.dm_exec_requests;
+
+-- check backup history
+SELECT
+CONVERT(CHAR(100), SERVERPROPERTY('Servername')) AS Server,
+msdb.dbo.backupset.database_name,
+msdb.dbo.backupset.backup_start_date,
+msdb.dbo.backupset.backup_finish_date,
+--DATEDIFF(SECOND, msdb.dbo.backupset.backup_start_date, msdb.dbo.backupset.backup_finish_date) AS Duration,
+msdb.dbo.backupset.expiration_date,
+CASE msdb..backupset.type
+WHEN 'D' THEN 'Database'
+WHEN 'L' THEN 'Log'
+WHEN 'I' THEN 'Differential'
+END AS backup_type,
+msdb.dbo.backupset.backup_size,
+msdb.dbo.backupmediafamily.logical_device_name,
+msdb.dbo.backupmediafamily.physical_device_name,
+msdb.dbo.backupset.name AS backupset_name,
+msdb.dbo.backupset.description
+FROM msdb.dbo.backupmediafamily
+INNER JOIN msdb.dbo.backupset ON msdb.dbo.backupmediafamily.media_set_id = msdb.dbo.backupset.media_set_id
+WHERE (CONVERT(datetime, msdb.dbo.backupset.backup_start_date, 102) >= GETDATE() - 7)
+ORDER BY
+msdb.dbo.backupset.database_name,
+msdb.dbo.backupset.backup_finish_date
+--patch
+SELECT  
+SERVERPROPERTY('ServerName') AS [ServerName],  
+SERVERPROPERTY('ProductVersion') AS [Version], -- SQL Server Version (11=2012;12=2014;13=2016;14=2017;15=2019)
+SERVERPROPERTY('Edition') AS [Edition], -- SQL Server Edition 
+SERVERPROPERTY('ProductLevel') AS [ProductLevel], -- What servicing branch (RTM/SP/CU)
+SERVERPROPERTY('ProductUpdateLevel') AS [ProductUpdateLevel], -- Within a servicing branch, what CU# is applied
+SERVERPROPERTY('ProductBuild') AS [ProductBuild], -- Patch build number
+SERVERPROPERTY('ProductBuildType') AS [ProductBuildType], -- Is this a GDR or OD hotfix (NULL if on a CU build)
+SERVERPROPERTY('ProductUpdateReference') AS [ProductUpdateReference], -- KB article number that is applicable for this build
+SERVERPROPERTY('IsClustered') AS [IsClustered]	-- If yes, the other nodes need to patched as well
+
+
+--check last db connection
+SELECT d.name,
+last_user_seek = MAX(last_user_seek),
+last_user_scan = MAX(last_user_scan),
+last_user_lookup = MAX(last_user_lookup),
+last_user_update = MAX(last_user_update)
+FROM sys.dm_db_index_usage_stats AS i
+JOIN sys.databases AS d ON i.database_id=d.database_id
+GROUP BY d.name
+
+
+
+
+--check fragmentation level 
+SELECT * FROM sys.dm_db_index_physical_stats(DB_ID(),OBJECT_ID(''),
+DEFAULT, NULL, 'DETAILED')
+
+alter table [dbo].[UM_USER] rebuild with (data_compression = page)
+
+SELECT 'alter table ' + schema_NAME(schema_id) +'.' + [name] + ' rebuild with(data_compression = page)'
+FROM sys.tables
+
+If a customer requires insertion of 50 mil records,
+Before that script out indexes , delete them and then insert records
+When inserting records into table records also being inserted into indexes that will overload cpu
+
+In addition, the clustered and non-clustered indexes, that are created over large tables, can be partitioned across multiple filegroups, with each filegroup stored on a separate disk drive, improving the concurrent data access and retrieval operations, due to the fact that the data is distributed over different disk drives within the SQL index and the Query Optimizer will process only the partitions that the query will access, excluding all other partitions.
+
+
+
+-- shrink files sp
+USE [msdb]
+GO
+
+/****** Object:  StoredProcedure [dbo].[uspShrinkAllFiles]    Script Date: 2021-12-06 21:17:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[uspShrinkAllFiles]
+AS
+exec sp_msforeachdb
+'use [?];
+
+DECLARE @Used FLOAT
+DECLARE @Free FLOAT
+DECLARE @strSQL NVARCHAR(4000)
+DECLARE @name NVARCHAR(128)
+
+IF ''?'' NOT IN (''master'',''tempdb'',''model'',''msdb'')
+BEGIN
+
+DECLARE Cur CURSOR READ_ONLY FAST_FORWARD FOR
+SELECT size/128.0,
+size/128.0 - CAST(FILEPROPERTY(name, ''SpaceUsed'') AS INT)/128.0,
+[name]
+FROM sys.database_files
+WHERE type IN (0,1);
+
+
+OPEN cur
+FETCH cur INTO @Used,
+@Free,
+@name
+
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+SET @strSQL = ''DBCC SHRINKFILE (N'''''' + @name + '''''' ,'' + CAST(CAST((@Used - @Free) AS INT) AS VARCHAR(100)) + '')''
+EXECUTE sp_executeSQL @strSQL
+--PRINT @strSQL
+FETCH cur INTO @Used,
+@Free,
+@name
+END
+
+
+CLOSE cur
+DEALLOCATE cur
+END
+'
+GO
+
+
+SELECT  c.session_id, 
+c.net_transport, 
+c.encrypt_option,   
+c.auth_scheme, 
+s.host_name, 
+s.program_name,   
+s.client_interface_name, 
+s.login_name, 
+s.nt_domain,   
+s.nt_user_name, 
+s.original_login_name, 
+c.connect_time,   
+s.login_time   
+FROM sys.dm_exec_connections AS c  
+     JOIN sys.dm_exec_sessions AS s  
+ON c.session_id = s.session_id  
+
+-- Find open transactions
+SELECT s.*   
+FROM sys.dm_exec_sessions AS s  
+WHERE EXISTS(SELECT TOP 1 1
+FROM sys.dm_tran_session_transactions AS t  
+WHERE t.session_id = s.session_id)  
+    AND 
+NOT EXISTS(SELECT TOP 1 1
+FROM sys.dm_exec_requests AS r  
+WHERE r.session_id = s.session_id)
+
+
+-- What do processes do?
+SELECT t.*
+FROM sys.dm_exec_requests AS r
+CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) AS t
+
+-- Performance and executions
+SELECT s2.dbid,   
+	   s2.objectid,
+    s1.sql_handle,    
+    (SELECT TOP 1 SUBSTRING(s2.text,statement_start_offset / 2 + 1 , ( ( CASE WHEN statement_end_offset = -1   
+    THEN (LEN(CAST(s2.text AS NVARCHAR(MAX))) * 2)   
+    ELSE statement_end_offset 
+    END)  - statement_start_offset) / 2+1))  AS sql_statement,  
+    s1.execution_count,   
+    s1.plan_generation_num,   
+    s1.last_execution_time,     
+    s1.total_worker_time,
+    s1.total_worker_time / s1.execution_count AS 'Avg_worker_time',
+    s1.last_worker_time,   
+    s1.min_worker_time,   
+    s1.max_worker_time,  
+    s1.total_physical_reads,   
+    s1.last_physical_reads,   
+    s1.min_physical_reads,    
+    s1.max_physical_reads,    
+    s1.total_logical_writes,   
+    s1.last_logical_writes,   
+    s1.min_logical_writes,   
+    s1.max_logical_writes               
+FROM sys.dm_exec_query_stats AS s1   
+    CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS s2    
+WHERE s2.objectid is null   -- For ad hoc statements
+ORDER BY max_physical_reads DESC
+
+Powershell:
+#check if port is open					                   Test-NetConnection -ComputerName sbssqlp8229 -Port 1433
+#see AD group members					            net group o2_sql__a /domain
+
+#path to destination					       tracert sbssqlp8229
+#restart server					     Restart-Computer -ComputerName leo777 -Force
+
+-- if there is no access to sql server
+NET START MSSQLSERVER /f /mSQLCMD SQLCMD -S .  
+​
+USE [master] GO CREATE LOGIN [EUR\adm_srv_sql] FROM WINDOWS WITH DEFAULT_DATABASE=[master] 
+GO ALTER SERVER ROLE sysadmin ADD MEMBER [EUR\adm_srv_sql] GO
+​
+than exit and restart sql server
+
+
+Always ON & DR
+#check all when faillovers happended 
+Get-winEvent -ComputerName scmarna4087 -filterHashTable @{logname ='Microsoft-Windows-FailoverClustering/Operational'; id=1641}| ft -AutoSize -Wrap 
+
+SQL Server AlwaysOn consists of two technologies:
+AlwaysOn Failover Clustering Instances (AlwaysOn FCI)
+AlwaysOn Availability Groups (AlwaysOn AG)
+
+When replicating SQL Authentication to secondary nodes, copy with SID , not needed for AD accounts.  
+-- ensure jobs run only on primary node
+left-2540USE [msdb]
+GO
+
+/****** Object:  Job [AddCheckIfAGPrimaryStepToNewJobs]    Script Date: 6/2/2022 11:05:29 AM ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 6/2/2022 11:05:29 AM ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+BEGIN
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
+END
+
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'AddCheckIfAGPrimaryStepToNewJobs', 
+		@enabled=1, 
+		@notify_level_eventlog=0, 
+		@notify_level_email=0, 
+		@notify_level_netsend=0, 
+		@notify_level_page=0, 
+		@delete_level=0, 
+		@description=N'Once a week adds AddCheckIfAGPrimaryStep step to new jobs.', 
+		@category_name=N'[Uncategorized (Local)]', 
+		@owner_login_name=N'DCSEP\a2bcf65', @job_id = @jobId OUTPUT
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [Check If AG Primary]    Script Date: 6/2/2022 11:05:29 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Check If AG Primary', 
+		@step_id=1, 
+		@cmdexec_success_code=0, 
+		@on_success_action=3, 
+		@on_success_step_id=2, 
+		@on_fail_action=1, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'IF (SELECT ars.role_desc
+        FROM sys.dm_hadr_availability_replica_states ars
+        JOIN sys.availability_groups ag ON ars.group_id = ag.group_id AND ars.is_local = 1) <> ''Primary''
+    BEGIN
+       -- Secondary node, throw an error
+       raiserror (''Not the AG primary'', 2, 1)
+    END', 
+		@database_name=N'master', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [AddCheckIfAGPrimaryStep]    Script Date: 6/2/2022 11:05:29 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'AddCheckIfAGPrimaryStep', 
+		@step_id=2, 
+		@cmdexec_success_code=0, 
+		@on_success_action=1, 
+		@on_success_step_id=0, 
+		@on_fail_action=2, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'DECLARE @jobName NVARCHAR(128)
+ 
+DECLARE jobCursor CURSOR LOCAL FAST_FORWARD
+FOR
+    SELECT j.name FROM msdb.dbo.sysjobs j
+    WHERE [name] not in (''DatabaseBackup - USER_DATABASES - LOG'',''DatabaseBackup - USER_DATABASES - FULL'', ''DatabaseBackup - SYSTEM_DATABASES - FULL'')
+ 
+OPEN jobCursor 
+FETCH NEXT FROM jobCursor INTO @jobName
+ 
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    exec AddAGPrimaryCheckStepToAgentJob @jobName
+ 
+    FETCH NEXT FROM jobCursor INTO @jobName
+END
+ 
+CLOSE jobCursor
+DEALLOCATE jobCursor
+GO
+ ', 
+		@database_name=N'master', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'AddAGPrimaryCheckStep', 
+		@enabled=1, 
+		@freq_type=8, 
+		@freq_interval=1, 
+		@freq_subday_type=1, 
+		@freq_subday_interval=0, 
+		@freq_relative_interval=0, 
+		@freq_recurrence_factor=1, 
+		@active_start_date=20211008, 
+		@active_end_date=99991231, 
+		@active_start_time=40000, 
+		@active_end_time=235959, 
+		@schedule_uid=N'810966d1-c245-4a32-b9cf-de9c728829b9'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+EndSave:
+GO
+00USE [msdb]
+GO
+
+/****** Object:  Job [AddCheckIfAGPrimaryStepToNewJobs]    Script Date: 6/2/2022 11:05:29 AM ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 6/2/2022 11:05:29 AM ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
+BEGIN
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
+END
+
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'AddCheckIfAGPrimaryStepToNewJobs', 
+		@enabled=1, 
+		@notify_level_eventlog=0, 
+		@notify_level_email=0, 
+		@notify_level_netsend=0, 
+		@notify_level_page=0, 
+		@delete_level=0, 
+		@description=N'Once a week adds AddCheckIfAGPrimaryStep step to new jobs.', 
+		@category_name=N'[Uncategorized (Local)]', 
+		@owner_login_name=N'DCSEP\a2bcf65', @job_id = @jobId OUTPUT
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [Check If AG Primary]    Script Date: 6/2/2022 11:05:29 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Check If AG Primary', 
+		@step_id=1, 
+		@cmdexec_success_code=0, 
+		@on_success_action=3, 
+		@on_success_step_id=2, 
+		@on_fail_action=1, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'IF (SELECT ars.role_desc
+        FROM sys.dm_hadr_availability_replica_states ars
+        JOIN sys.availability_groups ag ON ars.group_id = ag.group_id AND ars.is_local = 1) <> ''Primary''
+    BEGIN
+       -- Secondary node, throw an error
+       raiserror (''Not the AG primary'', 2, 1)
+    END', 
+		@database_name=N'master', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+/****** Object:  Step [AddCheckIfAGPrimaryStep]    Script Date: 6/2/2022 11:05:29 AM ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'AddCheckIfAGPrimaryStep', 
+		@step_id=2, 
+		@cmdexec_success_code=0, 
+		@on_success_action=1, 
+		@on_success_step_id=0, 
+		@on_fail_action=2, 
+		@on_fail_step_id=0, 
+		@retry_attempts=0, 
+		@retry_interval=0, 
+		@os_run_priority=0, @subsystem=N'TSQL', 
+		@command=N'DECLARE @jobName NVARCHAR(128)
+ 
+DECLARE jobCursor CURSOR LOCAL FAST_FORWARD
+FOR
+    SELECT j.name FROM msdb.dbo.sysjobs j
+    WHERE [name] not in (''DatabaseBackup - USER_DATABASES - LOG'',''DatabaseBackup - USER_DATABASES - FULL'', ''DatabaseBackup - SYSTEM_DATABASES - FULL'')
+ 
+OPEN jobCursor 
+FETCH NEXT FROM jobCursor INTO @jobName
+ 
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    exec AddAGPrimaryCheckStepToAgentJob @jobName
+ 
+    FETCH NEXT FROM jobCursor INTO @jobName
+END
+ 
+CLOSE jobCursor
+DEALLOCATE jobCursor
+GO
+ ', 
+		@database_name=N'master', 
+		@flags=0
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'AddAGPrimaryCheckStep', 
+		@enabled=1, 
+		@freq_type=8, 
+		@freq_interval=1, 
+		@freq_subday_type=1, 
+		@freq_subday_interval=0, 
+		@freq_relative_interval=0, 
+		@freq_recurrence_factor=1, 
+		@active_start_date=20211008, 
+		@active_end_date=99991231, 
+		@active_start_time=40000, 
+		@active_end_time=235959, 
+		@schedule_uid=N'810966d1-c245-4a32-b9cf-de9c728829b9'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+EndSave:
+GO
+
+
+--- This script can be useful when you want to make sure that jobs runs only on the primary node.  
+ 
+https://mitchwheat.com/2018/05/29/sql-server-availability-groups-add-check-if-primary-step-to-existing-agent-jobs/ 
+
+Security:
+--see if connection is encrypted
+SELECT   
+    c.session_id, c.net_transport, c.encrypt_option,   
+    c.auth_scheme, s.host_name, s.program_name,   
+    s.client_interface_name, s.login_name, s.nt_domain,   
+    s.nt_user_name, s.original_login_name, c.connect_time,   
+    s.login_time   
+FROM sys.dm_exec_connections AS c  
+JOIN sys.dm_exec_sessions AS s  
+    ON c.session_id = s.session_id  
+WHERE c.session_id =
+
+-- check if a tls enabled
+declare @results int
+
+EXECUTE master.sys.xp_regread @rootkey = N'HKEY_LOCAL_MACHINE',
+@key = N'SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server',
+@value_name = N'Enabled',
+@value = @results OUTPUT
+print @results;
+
+-- TDE. Don’t forget to assign access to private key for SQLserver service account!
+
+USE master
+GO
+CREATE MASTER KEY ENCRYPTION
+BY PASSWORD='T?f91s*EMrLkfv!';
+GO
+
+CREATE CERTIFICATE sbsqlpj1943
+FROM FILE ='D:\TDE_files(do_not_delete)\sbsqlpj1943\sbsqlpj1943_1.cer'
+WITH PRIVATE KEY (FILE ='D:\TDE_files(do_not_delete)\sbsqlpj1943\sbsqlpj1943_1.pvk',
+DECRYPTION BY PASSWORD = 'JKMkSHk53RPTBANPxHCL')
+GO
+
+
+USE jira_vfbiz_prd; 
+GO
+CREATE DATABASE ENCRYPTION KEY WITH ALGORITHM = AES_256 
+ENCRYPTION BY SERVER CERTIFICATE sbsqlpj1943;
+
+
+
+-- set it ON
+ALTER DATABASE jira_vfbiz_prd
+SET ENCRYPTION ON;
+GO
+
+
+-- check if exist & ON
+
+SELECT DB_NAME(database_ID), * FROM sys.dm_database_encryption_keys
+
+
+
+SQL Auto Installation and Preparation steps
+2. During deployment they will automate actions:Add Computer Object to necessary group in AD server
+Add Computer to My Company\Servers\Database\SQL Symantec groupInstall Server certificate for TLS – (if possible)3. Execute following statements to prepare machine for SQL Server installation# Format volumes with 64k block size
+Format-Volume -DriveLetter D -FileSystem NTFS -AllocationUnitSize 65536
+Format-Volume -DriveLetter E -FileSystem NTFS -AllocationUnitSize 65536
+Format-Volume -DriveLetter F -FileSystem NTFS -AllocationUnitSize 65536
+Format-Volume -DriveLetter G -FileSystem NTFS -AllocationUnitSize 65536
+Format-Volume -DriveLetter H -FileSystem NTFS -AllocationUnitSize 65536
+
+#Add debug users local setting
+Add-LocalGroupMember -Group "Debug users" -Member "EUR\sql_adm", etc
+
+#Local policies
+#Add Bypass traverse checking
+ntrights +r SeChangeNotifyPrivilege -u "EUR\sqlserver__account"
+ntrights +r SeChangeNotifyPrivilege -u "EUR\sqlagent__account"
+#Add Log on as a batch job
+ntrights +r SeBatchLogonRight -u "EUR\sqlserver__account"
+ntrights +r SeBatchLogonRight -u "EUR\sqlagent__account"
+#Add Log on as Service
+ntrights +r SeServiceLogonRight -u "EUR\sqlserver__account"
+ntrights +r SeServiceLogonRight -u "EUR\sqlagent__account"
+
+#Add Firewall rules
+New-NetFirewallRule -DisplayName "MS-SQL-Server-TCP-1433-Inbound" -Direction Inbound -LocalPort 1433 -Protocol TCP -Action Allow
+New-NetFirewallRule -DisplayName "MS-SQL-Server-TCP-1433-Outbound" -Direction Outbound -LocalPort 1433 -Protocol TCP -Action Allow
+
+New-NetFirewallRule -DisplayName "MS-SQL-Server-UDP-1434-Inbound" -Direction Inbound -LocalPort 1434 -Protocol UDP -Action Allow
+New-NetFirewallRule -DisplayName "MS-SQL-Server-UDP-1434-Outbound" -Direction Outbound -LocalPort 1434 -Protocol UDP -Action Allow
+
+
+DEFINITIONS 
+Microsoft products have 10 years of life span: 5 years mainstream support & 5 extended support
+I/O latency on avg should be < 25 ms for MDF & < 5 ms for LDF
+Use SSD hard disks in prod
+SET STATISTICS TIME ON
+SET STATISTICS IO ON -- in general the more pages that need to be read the slower our query 
+ 
+You typically have one of two options for high availability protection:
+Always On Availability Groups (AOAG)  introduced with SQL Server 2012 Enterprise Edition,
+Always On Failover Cluster Instances (FCI), comes with SQL Server Standard and Enterprise Editions.
+In both of those solutions, the underlying infrastructure for availability relies on Windows Server failover clustering (WSFC). They both involve running SQL Server on a primary node and setting up one or more secondary nodes 
+ 
+SSH or Secure Shell is a network communication protocol that enables two computers to communicate 
+ 
+Telnet is a protocol that provides a command line interface for communication with a remote device or server
+ 
+iSCSI is used to facilitate data transfers over intranets and to manage storage over long distances. It can be used to transmit data over local area networks (LANs), wide area networks (WANs), or the Internet and can enable location-independent data storage and retrieval. ISCSI makes it possible to set up a shared-storage network where multiple servers and clients can access central storage resources as if the storage was a locally connected device
+ 
+Baseline is the expected values or conditions against which all performances are compared
+ 
+In Datalake
+Grafana used for SQL Server & System Metrics. Kibana - logfiles (Elastic Search).
+ 
+How cluster quorum works
+When nodes fail, or when some subset of nodes loses contact with another subset, surviving nodes need to verify that they constitute the majority of the cluster to remain online. If they can't verify that, they'll go offline.
+But the concept of majority only works cleanly when the total number of nodes in the cluster is odd (for example, three nodes in a five node cluster). So, what about clusters with an even number of nodes (say, a four node cluster)?
+ 
+There are two ways the cluster can make the total number of votes odd:
+First, it can go up one by adding a witness with an extra vote. This requires user set-up.
+Or, it can go down one by zeroing one unlucky node's vote (happens automatically as needed)
+ 
+DEADLOCK
+
+ 
+MAXDOP
+As a general guide, the Technote recommends:
+For underpowered (below recommended specifications) SQL servers with only 2 or 3 CPUs (CPU cores) - change the value to 1
+For SQL servers with 4 to 7 CPUs - change the value to 2 or 3
+For SQL servers with 8 to 12 CPUs - change the value to 3 or 4
+For SQL servers with 12 to 16 CPUs - change the value to between 4 and 6
+For SQL servers with 17 to 32 CPUs - change the value to between 6 and 8.
+ 
+ 
+In SQL, the cardinality of a column in a given table refers to the number of unique values that appear in the table for that column. So, remember that the cardinality is a number. For example, let’s say we have a table with a “Sex” column which has only two possible values of “Male” and “Female”. Then, that “Sex” column would have a cardinality of 2, because there are only two unique values that could possibly appear in that column – Male and Female.
+ 
+Stored Procedure vs Functions
+Some of the key differences are: Functions can only run SELECT and a stored procedure can also run DELETE/INSERT/UPDATE, stored procedures can have both input and output parameters whereas functions can only have input, functions can be used in one or many parts of a SELECT query and stored procedures cannot be used, stored procedures can optionally return a value whereas function must return a value, 
+ 
+The only difference between full and full-copy is that full-copy does not break the differential chain. Neither of them breaks the log chain as neither of them truncates the log file
+
+
+
+
+
+

@@ -15,6 +15,9 @@ The goal is simple:
 - `00-curated`: first-stop scripts and runbooks for common incidents.
 - `10-cases`: sanitized case notes and templates.
 - Other `MyCollection` folders: broader local script source library.
+- `Diagnostic_Query_Packs`: vendor/community diagnostic query packs kept as secondary reference material.
+- `Training_Labs_and_Diagnostic_Tools`: lab material and runnable utilities for controlled testing, training, and deeper investigation.
+- `Legacy_Script_Collections`: searchable imported script collections and personal notes. Use as secondary reference material, not first-pass production triage.
 - Repository root folders such as `Scripts`, `Stored_Procedure`, `Extended_Events`, `Errors`, and `Articles`: upstream `sqlserver-kit` reference material.
 - `MSSQL_li/Irrelavant`: quarantine only; do not use as active knowledge.
 

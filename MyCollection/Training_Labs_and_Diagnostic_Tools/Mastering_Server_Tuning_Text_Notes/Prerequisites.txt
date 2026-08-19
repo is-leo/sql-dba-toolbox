@@ -1,0 +1,14 @@
+Hi, Brent here! I’m really excited to welcome you to Mastering Server Tuning.
+
+Watch the rest of my classes first.
+This class is the pinnacle of my classes. In here, I assume that you've already finished all of the Fundamentals and Mastering classes. You're going to be leveraging all of your index and query tuning knowledge here.
+
+Armed with the material in those classes, you’ll be well-equipped to keep up in this Mastering class.
+
+Set up your lab class VM.
+Read these instructions on how to set up a Mastering class VM. It'll take several hours. (The great news is that once you've set up a VM once, you're good to go for all of my Mastering classes - the setup is the same for all of them.)
+
+If you're attending a live class, join the Slack channel.
+To ask questions and talk to the other attendees, go to https://www.brentozar.com/slack/ to get an instant invite, then join the #BrentOzarUnlimited channel. This way attendees can help each other with their questions during the live labs.
+
+Audio will come through your computer speakers, so you’ll want clear speakers or a set of headphones. (You don’t have to worry about a microphone or webcam – other attendees won’t see or hear you.)

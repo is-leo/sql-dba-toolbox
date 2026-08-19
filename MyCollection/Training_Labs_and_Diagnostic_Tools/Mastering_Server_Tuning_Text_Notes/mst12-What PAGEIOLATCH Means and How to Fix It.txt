@@ -1,0 +1,7 @@
+What PAGEIOLATCH Means and How to Fix It
+PAGEIOLATCH waits mean reading data pages from a data file. The 4 most common ways of tuning it, in order, are:
+
+Tune indexes
+Tune queries
+Add more memory
+Make storage faster

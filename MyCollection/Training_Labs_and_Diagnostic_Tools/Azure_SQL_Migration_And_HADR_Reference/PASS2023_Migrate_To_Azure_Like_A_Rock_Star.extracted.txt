@@ -1,0 +1,674 @@
+﻿# Extracted text from PASS2023_Migrate_To_Azure_Like_A_Rock_Star.pptx
+
+## ppt/slides/slide1.xml
+Migrate to Azure Like a Rock Star
+Marsha Pierce & Melody Zacharias
+She/Her
+Pure Storage
+
+## ppt/slides/slide10.xml
+Cloud Statistics  2023
+21.7%
+90%
+97%
+45%
+All IT spend by 2026
+User Spend
+
+## ppt/slides/slide11.xml
+Cloud Statistics  2023
+21.7%
+90%
+97%
+45%
+All IT spend by 2026
+User Spend
+Hybrid
+
+## ppt/slides/slide12.xml
+Cloud Statistics  2023
+21.7%
+90%
+97%
+45%
+All IT spend by 2026
+User Spend
+Hybrid
+Multi-Cloud
+
+## ppt/slides/slide13.xml
+Cloud Statistics  2023
+21.7%
+90%
+97%
+45%
+All IT spend by 2026
+User Spend
+Hybrid
+Multi-Cloud
+Spend
+
+## ppt/slides/slide14.xml
+Know Before You Go
+
+## ppt/slides/slide15.xml
+The players
+
+## ppt/slides/slide16.xml
+{5C22544A-7EE6-4342-B048-85BDC9FD1C3A}Feature
+DEA
+DMA
+DMS
+SSMA
+Database Experimentation Assistant
+Azure Data Migration Assistant
+Database Migration Service
+SQL Server Migration Assistant
+Deficiency reporting
+X
+X
+X
+X
+Used for Upgrade
+X
+Used for Analysis
+X
+X
+Uses DMA in the service for this feature
+X
+Used for Migration
+X
+X
+X
+Migration issues
+X
+X
+X
+Feature issues
+X
+Compatibility issues
+X
+X
+Performance issues
+X
+Source Versions
+SQL Server 2005 and later
+SQL Server 2005 and later, Amazon RDS SQL Server
+SQL Server 2005 and later on Windows, AWS RDS for SQL Server
+Access, DB2, MySQL, Oracle, and SAP ASE
+Target Versions
+SQL Server 2008 and later, on premise
+SQL Server 2012 and later on Windows, SQL Server 2017 on Linux, Azure SQL Database and Azure SQL Database managed instance
+SQL Server 2012 and later on Windows, SQL Server 2017 on Linux, Azure SQL Database and Azure SQL Database managed instance
+SQL Server 2008 and later on  Windows, SQL Server 2017 and 2019 on both Windows and Linux, Azure SQL Database
+
+## ppt/slides/slide17.xml
+DEA
+Database Experimentation Assistant
+
+## ppt/slides/slide18.xml
+Database Experimentation Assistant
+
+## ppt/slides/slide19.xml
+Database Experimentation Assistant
+Test before you move
+Index changes
+
+## ppt/slides/slide2.xml
+Marsha Pierce
+https://
+www.linkedin.com
+/in/
+marsha
+-pierce-pure/
+https://
+www.linkedin.com
+/in/
+melodyzacharias
+/
+Pure Storage
+Marsha is an experienced Solutions Architect with a demonstrated history of working in the computer software industry. Skilled in Databases, Business Intelligence, Enterprise Architecture, Software Development Life Cycle (SDLC), and Networking.
+Melody Zacharias is a Microsoft MVP for the data platform and Microsoft Regional Director. Melody has co-written several books on data, including SQL Server Administration by Microsoft Press, both the 2019 and 2022 versions. She speaks at conferences on Data.
+She/Her
+Melody Zacharias
+
+## ppt/slides/slide20.xml
+Database Experimentation Assistant
+Test before you move
+Check query Plans
+Index changes
+
+## ppt/slides/slide21.xml
+Database Experimentation Assistant
+Test before you move
+Code changes
+Check query Plans
+Index changes
+
+## ppt/slides/slide22.xml
+Database Experimentation Assistant
+Test before you move
+Code changes
+Check query Plans
+Workload or Compatibility changes
+Index changes
+
+## ppt/slides/slide23.xml
+DMA
+Data Migration Assistant
+
+## ppt/slides/slide24.xml
+Data Migration Assistant
+
+## ppt/slides/slide25.xml
+Data Migration Assistant
+
+## ppt/slides/slide26.xml
+Data Migration Assistant
+
+## ppt/slides/slide27.xml
+Data Migration Assistant
+
+## ppt/slides/slide28.xml
+Play it Safe
+
+## ppt/slides/slide29.xml
+Identity
+Identity
+Authentication
+Authorization
+Security Basics
+Identity
+User or Process requesting access
+Authentication
+System that proves the identity
+Authorization
+Authorization for the request
+style.visibility
+
+## ppt/slides/slide3.xml
+Agenda
+
+## ppt/slides/slide30.xml
+Azure SQL Migration Demo
+
+## ppt/slides/slide32.xml
+Scripts & Automation
+
+## ppt/slides/slide33.xml
+33
+Uncomplicate Data Storage, Forever
+About the Scripts & Automation
+This technique has been used to migrate 1000’s of instances since 2009
+At the peak these scripts moved 3 servers a week for about 3 years.
+Each server contained 100+ databases
+Downtime was minimal (just a few minutes)
+Easy Rollback
+Every time a bug was found steps were added to the process
+This technique migrates one instance to another
+It does not move individual databases but entire instances
+It accounts for everything I encountered except for an IP address
+It even accounts for moving replication between servers and not having to reinitialize any replication
+This is broken down into several stages
+
+## ppt/slides/slide34.xml
+You must have documentation so that you have a plan
+Prior to upgrading an environment so that the scope is clearly defined.
+Stage 1 Document everything
+
+## ppt/slides/slide35.xml
+35
+Uncomplicate Data Storage, Forever
+Documentation of Current Environment
+Servers are being migrated,
+Databases
+Current DB Version
+Encryption Level
+Model (Full, Simple, Bulk)
+GTM’s
+Aliases
+Server Principal Names
+Application Hosts
+Current Connection Strings
+Service Accounts
+Current Usage of Databases
+Current QA and DEV environments
+ETL Jobs
+Current DB and Server Level Settings that may deviate from standard
+Security Certificates
+Vendor Applications
+Linked Servers
+File Shares
+Windows Options – Perform Volume Maintenance Tasks and Lock Pages In Memory
+Check Server Power Plan
+Check Block Size of Drives
+
+## ppt/slides/slide36.xml
+Documentation of Current Environment
+
+## ppt/slides/slide37.xml
+This spreadsheet contains several scripts that are used to fill out the sheet
+Used for
+Cleaning up the environment
+Prepping the new server
+Building migration scripts
+Outputting the
+SP_Configure
+results
+Documenting results from part 2
+CYA
+Part 1 The Spreadsheet -
+MyCLusterName - Documentation
+
+## ppt/slides/slide38.xml
+38
+Uncomplicate Data Storage, Forever
+Part 2 The Checks – Checks Folder Part 2
+Policy Base Management
+Affinity Mask
+SQL DMO
+CLR
+Mail
+Distrubutor
+Encryption
+DDL Trigger
+Etc
+…
+In this folder there are a bunch of check to run looking for things that need to be documented in the spreadsheet if they exist
+
+## ppt/slides/slide39.xml
+You will use all of info from Stage 1 to make sure the appropriate configurations and dependencies are added
+Stage 2 Build the New Server
+
+## ppt/slides/slide4.xml
+Agenda
+Hybrid is here to stay
+
+## ppt/slides/slide40.xml
+If the server's name was DatabaseInstance1 the new server was DatabaseInstance1_New
+Make sure the port numbers of the servers match.
+If you can keep the same service account, if not make sure that permissions match.
+Apply any setting like mail, CLR etc. …. to the new server
+Compare the results of
+sp_configure
+on the new server to the old. Put results in sheet
+Have second DBA verify
+Now that you have documented everything you should know what to build
+
+## ppt/slides/slide41.xml
+Names Should Be Standardized
+If you want to automate…..
+Things to consider on the new server
+Mountpoints are easier to use in code
+
+## ppt/slides/slide42.xml
+Never put data directly on a mountpoint
+Keep the same folder structure under every mount point
+Considerations for Mountpoints
+
+## ppt/slides/slide43.xml
+Leverage your Backup Mount Point
+Mountpoints are easier to use in code
+
+## ppt/slides/slide44.xml
+Consider keeping some type of history for things like users, jobs etc.…
+Version Control
+
+## ppt/slides/slide45.xml
+Having a cleans source environment makes for an easier migration
+Stage 3 Cleanup
+
+## ppt/slides/slide46.xml
+We only want to migrate what is necessary.
+Remove Unused Databases
+Log index usage stats daily
+I generally like to have 6 months  of data
+These log can be aggregated to find orphaned databases in your environment.
+The first time I did this looking only at 3 instances I found 20 TB of orphaned/duplicate data
+Offline a database for at least two weeks before you drop it.
+
+## ppt/slides/slide47.xml
+What the aggregation script looks like
+
+## ppt/slides/slide48.xml
+Cleaning up disabled users will be key to good scripting later on. But always save your users so that you can restore them if need be.
+Cleanup The Users
+
+## ppt/slides/slide49.xml
+Again if you want to have a successful migration you need to only migrate active jobs.
+Cleanup The Jobs
+
+## ppt/slides/slide5.xml
+Agenda
+Hybrid is here to stay
+Know before you go
+
+## ppt/slides/slide50.xml
+You will not be able to bulk script the jobs properly if they are not cleaned.
+Cleanup The Jobs
+Remove Unscheduled Jobs
+Remove Disabled Jobs
+Remove Jobs With Disabled Schedules
+
+## ppt/slides/slide51.xml
+Cleanup The Jobs – The Script
+
+## ppt/slides/slide52.xml
+Log shipping tends to be the methodology with the least downtime that everyone can use.
+You will use all of info from Stage 1 to make sure the appropriate configurations and dependencies are added
+Let’s Prep those databases for migration!
+
+## ppt/slides/slide53.xml
+This is very easy to use
+The wizard is available directly from within SSMS
+Log Shipping – Method 1
+
+## ppt/slides/slide54.xml
+This creates the jobs that run log shipping.
+Log Shipping – Method 1
+You do need to manually monitor your log shipping
+
+## ppt/slides/slide55.xml
+Initialize the Secondary
+Log Shipping – Method 1
+
+## ppt/slides/slide56.xml
+Copy Files
+Log Shipping – Method 1
+
+## ppt/slides/slide57.xml
+Restore Transaction Log
+Log Shipping – Method 1
+
+## ppt/slides/slide58.xml
+Finally complete the wizard
+Log Shipping – Method 1
+
+## ppt/slides/slide59.xml
+DBA Tools has a good blog detailing how to leverage their toolkit to setup log shipping
+https://dbatools.io/logshipping/
+GARRY BARGSLEY
+Log Shipping – Method 2 DBA Tools
+
+## ppt/slides/slide6.xml
+Agenda
+Hybrid is here to stay
+Know before you go
+Scripts & Automation
+
+## ppt/slides/slide60.xml
+https://www.sqlservercentral.com/articles/how-to-setup-log-shipping-for-multiple-databases
+Brian Davey
+Log Shipping – Method 3
+
+## ppt/slides/slide61.xml
+Check your lists!
+The Week of Migration
+
+## ppt/slides/slide62.xml
+The Week of Migration
+You do not want to find out log shipping has failed the day of migration for a large database
+Manually Check Log Shipping Everyday
+Have team verify settings on servers one more time (different people)
+Do several dry runs of migration
+See if you can schedule teams to be onsite
+
+## ppt/slides/slide63.xml
+Change Freeze in Effect
+The Day of Migration
+
+## ppt/slides/slide64.xml
+The Day of Migration
+Morning Tasks
+Script out users -
+https://support.microsoft.com/en-ca/help/918992/how-to-transfer-logins-and-passwords-between-instances-of-sql-server
+sp_revlogin
+save as
+11 -
+MYServer
+_
+Logins.sql
+Script out replication
+Edit the files in
+replocation
+and change  all subscribers to
+@
+sync_type
+='replication support option’.
+Save file as
+10 -
+MyServer
+_
+REPL.sql
+
+## ppt/slides/slide65.xml
+The Day of Migration
+Morning Tasks
+Script Out Jobs
+–
+Select the jobs you want to script out and save to a file
+12 -
+MyServer
+JOBS.sql
+
+## ppt/slides/slide66.xml
+It’s getting close!
+2 hours before Migration
+DBA
+Run these steps on each of the servers being migrated at approximately
+Disable non LS Jobs (0 - Disable
+Jobs.sql
+)
+Log any connection errors (0a - Monitor For Failed
+Logins.sql
+)
+Grab a list of active user connection to make sure they reconnect after migration  (1 - Connections - Filtered -
+Distinct.sql
+)
+Confirm that only LS Jobs are running
+Disable Database and Windows  Monitoring
+Windows
+Set TTL for
+ServerNames
+, Cluster Name, AG Name and GTM  to 0.
+
+## ppt/slides/slide67.xml
+You have done all the prep now it is time to migrate!
+It’s Migration time
+
+## ppt/slides/slide68.xml
+Monitor each step and do not proceed to the next one until each step is complete.
+Leverage the Scripts Repository
+
+## ppt/slides/slide69.xml
+3 - Kill User Connections and
+Monitor.sql
+Migration - Source
+
+## ppt/slides/slide7.xml
+Agenda
+Hybrid is here to stay
+Know before you go
+Scripts & Automation
+Play Safe
+
+## ppt/slides/slide70.xml
+3 - Kill User Connections and
+Monitor.sql
+Migration - Source
+
+## ppt/slides/slide71.xml
+4 -
+DISTRIBUTION_JOBS.sql
+4a- Monitor Undistributed
+commands.sql
+** Checking to make sure replication is done
+5 - Start LS Jobs on Old Server and
+Disable.sql
+Migration - Source
+
+## ppt/slides/slide72.xml
+Stuff for the other teams to do
+
+DBA’s can’t do it all, you just need to verify you can get to the new server via SSMS when the below steps are complete.
+Repoint any and all GTM’s to the new server
+Rename FCI:
+MySQLSource
+>
+MySQLSource_Old
+Open
+cmd
+prompt as admin and run ipconfig /
+registerdns
+Create CNAME
+MySQLSource
+>
+MySQLTarget
+(aka rename server)
+Networking
+Windows
+Windows
+Windows
+
+## ppt/slides/slide73.xml
+6 - Start LS Copy Jobs On New
+Server.sql
+Migration - Target
+
+## ppt/slides/slide74.xml
+7 - Start LS Restore Jobs On New Server and Disable
+Jobs.sql
+Migration - Target
+
+## ppt/slides/slide75.xml
+8 -Bring Restoring Databases Online and Remove
+Secondary.sql
+Migration - Target
+
+## ppt/slides/slide76.xml
+10 -
+MyServer
+_
+REPL.sql
+Migration - Target
+This where you run the script to rebuild replication.
+Even without having to reinitialize and take snapshots this will take a minute. This should be your longest script during the outage.
+Do not proceed at all until this step is complete if you have replication
+
+## ppt/slides/slide77.xml
+Add the users and monitor
+Migration - Target
+11 -
+MYServer
+_
+Logins.sql
+as soon as you run this connections should retry and the databases now has activity
+Users can now begin testing.
+11a - Monitor For Failed Logins .
+sql
+Run
+1 - Connections - Filtered - Distinct .
+sql
+and make sure applications reconnect
+
+## ppt/slides/slide78.xml
+The Wrap Up
+Migration - Target
+Continue monitoring closely for 24 hours
+12 -
+MyServer
+JOBS.sql
+- add Jobs to the server
+13- Backup
+Validation.sql
+- validate backups are running
+11a - Monitor For Failed Logins .
+sql
+–
+continue checking
+Do not flip DB mode that will be done later. Do update stats
+sp_MSforeachdb
+'use [?]; exec
+sp_updatestats
+'
+
+## ppt/slides/slide79.xml
+Migration Done!
+
+## ppt/slides/slide8.xml
+Agenda –
+Migration to Azure
+Hybrid is here to stay
+Know before you go
+Scripts & Automation
+Play Safe
+Demos
+
+## ppt/slides/slide80.xml
+Other Options
+Open Source or Proprietary options
+dbatools
+Agent Jobs
+DMA
+Code Checker
+Third Party
+Various
+Custom
+API and Automation
+* Note
+bacpac
+is
+nolonger
+supported by Microsoft for migrations to Azure
+
+## ppt/slides/slide81.xml
+Marsha Pierce
+Melody Zacharias
+https://
+www.linkedin.com
+/in/
+marsha
+-pierce-pure/
+https://
+www.linkedin.com
+/in/
+melodyzacharias
+/
+
+## ppt/slides/slide83.xml
+Resources
+Analyst:
+https://www.gartner.com/en/newsroom/press-releases/2021-08-02-gartner-says-four-trends-are-shaping-the-future-of-public-cloud
+Analyst:
+https://www.businesswire.com/news/home/20200309005328/en/Infrastructure-Security-Challenges-Threaten
+VM:
+https://github.com/huachao/azure-content/blob/master/articles/virtual-machines/virtual-machines-migrate-onpremises-database.md
+DMA:
+https://docs.microsoft.com/en-us/azure/migrate/how-to-create-assessment
+Slide -
+https://docs.microsoft.com/en-us/sql/dma/dma-assess-app-data-layer?view=sql-server-ver15
+https://docs.microsoft.com/en-us/azure/dms/migration-using-azure-data-studio
+Access:
+https://docs.microsoft.com/sql/ssma/access/sql-server-migration-assistant-for-access-accesstosql
+DB2:
+https://docs.microsoft.com/sql/ssma/db2/migrating-db2-data-into-sql-server-db2tosql
+mySQL
+:
+https://docs.microsoft.com/sql/ssma/mysql/sql-server-migration-assistant-for-mysql-mysqltosql
+Oracle:
+https://docs.microsoft.com/sql/ssma/oracle/sql-server-migration-assistant-for-oracle-oracletosql
+Sybase Adaptive Server Enterprise (ASE):
+https://docs.microsoft.com/sql/ssma/sybase/sql-server-migration-assistant-for-sybase-sybasetosql
+DBAtools
+:
+https://dbatools.io/
+DBAtools
+blog sample:
+https://techcommunity.microsoft.com/t5/azure-sql-blog/automate-migration-to-sql-managed-instance-using-azure/ba-p/830801
+
+## ppt/slides/slide84.xml
+Thank you for taking part in the
+PASS Data Community Summit 2023.
+
+## ppt/slides/slide9.xml
+Hybrid is here to stay!

@@ -7,4 +7,6 @@ Start with:
 1. `01-blocking.sql` to find blockers and blocked sessions.
 2. `02-active-open-transactions.sql` to find transactions that may be holding locks.
 
+For deadlock interpretation or lab reproduction, use `MyCollection/Training_Labs_and_Diagnostic_Tools/Deadlocks_Training` after production evidence is captured.
+
 Do not recommend killing sessions until the lead blocker, transaction age, application owner, and business risk are understood.

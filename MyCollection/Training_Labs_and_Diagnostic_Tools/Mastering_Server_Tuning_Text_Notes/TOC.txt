@@ -1,0 +1,68 @@
+Course Curriculum
+ Metrics 1 & 2: Database Size & Batch Requests/sec (37:47)
+Before the Class
+ 
+ Prerequisites
+ 
+ Introductions and Overview (15:16)
+ 
+ Download the Slide Decks and Demo Scripts
+How to Measure a SQL Server's Performance
+ 
+Start Metrics 1 & 2: Database Size & Batch Requests/sec (37:47)
+ 
+Start Metric 3: Wait Time Ratio (36:38)
+ 
+Start Brent Analyzes Your Server's Wait Stats (35:40)
+How to Fix PAGEIOLATCH Waits
+ 
+Start What PAGEIOLATCH Means and How to Fix It (41:16)
+ 
+Start Lab 1 Setup: Fix a Server Having PAGEIOLATCH Waits (5:01)
+ 
+Start Lab 1: Brent's Solution (30:45)
+How to Fix SOS_SCHEDULER_YIELD Waits
+ 
+Start What SOS_SCHEDULER_YIELD Means and How to Fix It (40:42)
+ 
+Start Lab 2 Setup: Fix a Server Having SOS_SCHEDULER_YIELD Waits (5:35)
+ 
+Start Lab 2: Brent's Solution (48:56)
+How to Fix Misleading Waits
+ 
+Start What CXPACKET and CXCONSUMER Means and How to Fix It (36:34)
+ 
+Start Plan Caching and Parameterization (35:40)
+ 
+Start Lab 3 Setup: Fix a Mixed Workload (4:42)
+ 
+Start Lab 3: Brent's Solution (28:03)
+How to Fix LCK% Waits
+ 
+Start What LCK% Means and How to Fix It (40:53)
+ 
+Start Lab 4 Setup: Fix a Complicated Workload (4:21)
+ 
+Start Lab 4: Brent's Solution (49:20)
+How to Fix Poison Waits
+ 
+Start What THREADPOOL Means and How to Fix It (41:09)
+ 
+Start What RESOURCE_SEMAPHORE Means and How to Fix It (26:39)
+ 
+Start Hardware-Sounding Waits: WRITELOG, HADR_SYNC_COMMIT, ASYNC_NETWORK_IO (15:39)
+The Architecture Lab
+ 
+Start Lab 5 Setup: Assess a Problem, Fix It, and Plan for the Future (7:26)
+ 
+Start Lab 5: Brent's Solution (92:45)
+How to Triage Performance Emergencies
+ 
+Start Brent's Triage Process (34:19)
+ 
+Start Lab 6 Setup: Triage an Emergency and Fix It (5:21)
+ 
+Start Lab 6: Brent's Solution (28:43)
+Bonus: Off-Topic Storytelling Time
+ 
+Start Do We Need to Optimize for Sequential Keys? (7:39)

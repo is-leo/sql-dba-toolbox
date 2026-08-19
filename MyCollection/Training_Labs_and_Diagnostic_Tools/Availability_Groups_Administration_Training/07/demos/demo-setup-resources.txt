@@ -1,0 +1,24 @@
+Demonstration scripts were nearly identical to those provided in Microsoft Documenation.  
+Follow along at this link to build, test, and failover your distributed availability group.
+
+https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/configure-distributed-availability-groups
+
+
+PowerShell scripts to verify Failover Cluster Thresholds, test, and identify resources.  
+(if more than one cluster is present you will need to identify it or iterate through each)
+
+  Get-Cluster | Format-List -property samesubnetthreshold, samesubnetdelay, crosssubnetthreshold, crosssubnetdelay
+
+  Get-ClusterNetwork | ft name, metric, autometric
+
+  Get-Cluster | Test-Cluster  
+
+  Get-ClusterGroup | Get-ClusterResource
+
+SQL Server PowerShell Resources
+
+https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps
+
+SQL Server PowerShell Resources for Availability Groups
+
+https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/overview-of-powershell-cmdlets-for-always-on-availability-groups-sql-server?view=sql-server-ver15

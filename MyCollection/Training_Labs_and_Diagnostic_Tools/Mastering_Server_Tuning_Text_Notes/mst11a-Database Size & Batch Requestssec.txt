@@ -1,0 +1,7 @@
+Metrics 1 & 2: Database Size & Batch Requests/sec
+We explain the 3 metrics you want to track on SQL Servers:
+
+Total database size (and for SaaS companies, database quantity)
+Batch Requests per Second
+Wait Time (and we introduce Wait Time Ratio)
+Then we’ll show how to get them with sp_BlitzFirst. First up, the first 2 metrics.
