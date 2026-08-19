@@ -2,6 +2,8 @@
 
 Personal SQL Server DBA knowledge base and script library.
 
+Start here: `USAGE.md`.
+
 Use this structure:
 
 - `00-curated`: first-stop troubleshooting scripts and runbooks.
