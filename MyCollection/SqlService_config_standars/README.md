@@ -2,7 +2,6 @@
 
 Use this folder for SQL Server service-account, maintenance, and default-configuration reference material.
 
-- `SQL_Server_Service_Account_Comparison.xlsx`: service-account comparison matrix. Use when reviewing SQL Server service identity choices, least privilege, or build-standard differences.
 - `Default config SQL Server 2022.txt` and `Default config SQL.txt`: baseline configuration references.
 - Maintenance solution files: service/job configuration references for SQL Server maintenance setup.
 
